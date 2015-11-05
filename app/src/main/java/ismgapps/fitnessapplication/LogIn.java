@@ -13,6 +13,6 @@ public class LogIn extends AppCompatActivity {
 
         Intent intent = getIntent();
 
-        // test test
+
     }
 }
