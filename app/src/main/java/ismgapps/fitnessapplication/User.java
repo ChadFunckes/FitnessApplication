@@ -1,6 +1,5 @@
 package ismgapps.fitnessapplication;
 
-import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -76,7 +75,7 @@ public class User {
         editor.putFloat("BMI", BMI);
         editor.putFloat("BMR", BMR);
         editor.putFloat("Starting_Weight", start_weight);
-        editor.putInt("Start_LVL", start_lvl));
+        editor.putInt("Start_LVL", start_lvl);
         editor.putFloat("Cal_Needs", cal_needs);
         editor.putFloat("Current_Weight", cur_weight);
         editor.putInt("Cur_Lvl", cur_lvl);
