@@ -1,12 +1,9 @@
 package ismgapps.fitnessapplication;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 public class User {
     private final String TAG = "User Class Activity";
@@ -15,13 +12,17 @@ public class User {
     private float weight, height, BMI, BMR, start_weight, cal_needs, cur_weight;
     private int start_lvl, cur_lvl;
 
-    //empty constructor
-    public User() {
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
 
+    //empty constructor
+    public User(SharedPreferences sharedPreferences) {
+        this.sharedPreferences = sharedPreferences; // set the preferences set
+        this.editor = sharedPreferences.edit(); // set the editor
     }
 
     // this method fills the user data from the shared preferences information
-    public void fillUserFromPrefs(SharedPreferences sharedPreferences) {
+    public void fillUserFromPrefs() {
         this.name = sharedPreferences.getString("name", null);
         this.weight = sharedPreferences.getFloat("weight", 0);
         this.height = sharedPreferences.getFloat("height", 0);
@@ -37,7 +38,7 @@ public class User {
     }
 
     //@TODO this is a sample to get through the database
-    public void buildDummy(SQLiteDatabase db, SharedPreferences.Editor sharedEditor){
+    public void buildDummy(SQLiteDatabase db){
         // set query to execute
         String query = "SELECT * FROM Users;";
         // set a cursor to run the query
@@ -45,22 +46,43 @@ public class User {
         // move to the first row
         c.moveToFirst();
         // clear the shared preferences
-        sharedEditor.clear();
+        editor.clear();
         // set both the shared prefernces and the user elements...
-        sharedEditor.putString("name", name = c.getString(1));
-        sharedEditor.putFloat("weight", weight = c.getFloat(2));
-        sharedEditor.putFloat("height", height = c.getFloat(3));
-        sharedEditor.putFloat("BMI", BMI = c.getFloat(4));
-        sharedEditor.putFloat("BMR", BMR = c.getFloat(5));
-        sharedEditor.putFloat("Starting_Weight", start_weight = c.getFloat(6));
-        sharedEditor.putInt("Start_LVL", start_lvl = c.getInt(7));
-        sharedEditor.putFloat("Cal_Needs", cal_needs = c.getFloat(8));
-        sharedEditor.putFloat("Current_Weight", cur_weight = c.getFloat(9));
-        sharedEditor.putInt("Cur_Lvl", cur_lvl = c.getInt(10));
-        sharedEditor.putString("Email", email = c.getString(11));
-        sharedEditor.putString("Phone", phone = c.getString(12));
+        editor.putString("name", name = c.getString(1));
+        editor.putFloat("weight", weight = c.getFloat(2));
+        editor.putFloat("height", height = c.getFloat(3));
+        editor.putFloat("BMI", BMI = c.getFloat(4));
+        editor.putFloat("BMR", BMR = c.getFloat(5));
+        editor.putFloat("Starting_Weight", start_weight = c.getFloat(6));
+        editor.putInt("Start_LVL", start_lvl = c.getInt(7));
+        editor.putFloat("Cal_Needs", cal_needs = c.getFloat(8));
+        editor.putFloat("Current_Weight", cur_weight = c.getFloat(9));
+        editor.putInt("Cur_Lvl", cur_lvl = c.getInt(10));
+        editor.putString("Email", email = c.getString(11));
+        editor.putString("Phone", phone = c.getString(12));
         // commit changes to shared preferences
-        sharedEditor.commit();
+        editor.commit();
+    }
+
+    public void commitUserToDB(SQLiteDatabase db){
+        DBhandler.InsertUser(this);
+        commitUserToPrefs();
+    }
+    private void commitUserToPrefs(){ // called only after database is updated
+        editor.clear();
+        editor.putString("name", name);
+        editor.putFloat("weight", weight);
+        editor.putFloat("height", height);
+        editor.putFloat("BMI", BMI);
+        editor.putFloat("BMR", BMR);
+        editor.putFloat("Starting_Weight", start_weight);
+        editor.putInt("Start_LVL", start_lvl));
+        editor.putFloat("Cal_Needs", cal_needs);
+        editor.putFloat("Current_Weight", cur_weight);
+        editor.putInt("Cur_Lvl", cur_lvl);
+        editor.putString("Email", email);
+        editor.putString("Phone", phone);
+        editor.commit();
     }
 
     public void setName(String name) {

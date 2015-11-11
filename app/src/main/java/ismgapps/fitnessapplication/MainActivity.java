@@ -25,74 +25,64 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MyFitness.OnFragmentInteractionListener,
         Today.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
 
-    private static final String TAG = "MainActivity"; // use this tag for log actions
-    SharedPreferences sharedPreferences;
-
-    // @TODO make user class object here
-    User user;
-
+    private final String TAG = "MainActivity"; // use this tag for log actions
+    public SharedPreferences sharedPreferences; // get access to the shared preferences
+    // create the logged in user object
+    private User user;
     // set up fragments
     public MyFitness fitnessFrag;
     public Today todayFrag;
     public Workouts workoutFrag;
     public Recipies recipieFrag;
-
-    // get database handeling objects
-    SQLiteDatabase dbWrite = null;
-    DBhandler dBhandler; // database helper object
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
-
+    // get database handeling objects
+    private SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
+    private DBhandler dBhandler; // database helper object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // set up the view and toolbars
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         Context context = this;
-
+        // get the sharedprefernces for use
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-
         //make fragments
         fitnessFrag = new MyFitness();
         todayFrag = new Today();
         workoutFrag = new Workouts();
         recipieFrag = new Recipies();
-
         // get database setup...
         dBhandler = new DBhandler(this);
-        // dBhandler.destroyDB(); // @TODO remove this line, it was for testing....
-        dbWrite = dBhandler.getWritableDatabase(); // this will run onCreate in DBhandler...
+        // get writable database access
+        dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
-        user = new User();
-        //user.buildDummy(dbWrite, editor); // @TODO build dummy gets a fake user from the database...delete this after login section is working
+        user = new User(sharedPreferences); // build user based on stored preferences
+        user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
+
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
-
         /* TODO reactivate this block of code after dummy testing to start login activity
             Intent intent = new Intent(this, LogIn.class);
             startActivity(intent);*/
-
             Log.d(TAG, "no user data exists in shared prefs");
         }
         else{ // fill user from saved preferences ...
-            user.fillUserFromPrefs(sharedPreferences);
+            user.fillUserFromPrefs();
             Log.d(TAG, "user data filled from preferences");
         }
 
         Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
-
 
     }
 
@@ -167,9 +157,6 @@ public class MainActivity extends AppCompatActivity
                 break;
 
         }
-
-
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

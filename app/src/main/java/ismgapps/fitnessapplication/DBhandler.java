@@ -80,4 +80,21 @@ public class DBhandler extends SQLiteOpenHelper{
     public void destroyDB(){
         dbContext.deleteDatabase(DATABASE_NAME);
     }
+
+    public static void InsertUser(User user) {
+        ContentValues values = new ContentValues();
+        //values.put("_id", xxxxx); // user _id is autoIncrement
+        values.put("Name", user.getName());
+        values.put("Height", user.getHeight());
+        values.put("Weight", user.getWeight());
+        values.put("BMI", user.getBMI());
+        values.put("BMR", user.getBMR());
+        values.put("Starting_Weight", user.getWeight());
+        values.put("Start_LVL", user.getStart_lvl());
+        values.put("Cal_Needs", user.getCal_needs());
+        values.put("Cur_Weight", user.getCur_weight());
+        values.put("Cur_Level", user.getCur_lvl());
+        values.put("Email", user.getEmail());
+        values.put("Phone", user.getPhone());
+    }
 }
