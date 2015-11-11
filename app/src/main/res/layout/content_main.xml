@@ -16,12 +16,5 @@
     android:layout_height="fill_parent">
 </FrameLayout>
 
-    <Button
-        android:text="@string/LogIn"
-        android:id="@+id/button"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:onClick="deleteThis"/>
-
 
 </RelativeLayout>

@@ -2,7 +2,10 @@ package ismgapps.fitnessapplication;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -16,17 +19,27 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+// @TODO clean up interaction listeners....
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MyFitness.OnFragmentInteractionListener,
         Today.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
 
     private static final String TAG = "MainActivity"; // use this tag for log actions
-    // set up fagments
-    public final MyFitness fitnessFrag = new MyFitness().newInstance("","");
-    public final Today todayFrag = new Today().newInstance();
-    public final Workouts workoutFrag = new Workouts().newInstance();
-    public final Recipies recipieFrag = new Recipies().newInstance();
+    SharedPreferences sharedPreferences;
 
+    // @TODO make user class object here
+    User user;
+
+    // set up fragments
+    public MyFitness fitnessFrag;
+    public Today todayFrag;
+    public Workouts workoutFrag;
+    public Recipies recipieFrag;
+
+    // get database handeling objects
+    SQLiteDatabase dbWrite = null;
+    DBhandler dBhandler; // database helper object
+    // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
 
 
@@ -45,9 +58,34 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        sharedPreferences = this.getSharedPreferences("user_info", MODE_PRIVATE);
+
+        //make fragments
+        fitnessFrag = new MyFitness();
+        todayFrag = new Today();
+        workoutFrag = new Workouts();
+        recipieFrag = new Recipies();
+
+        // get database setup...
+        dBhandler = new DBhandler(this);
+        // dBhandler.destroyDB(); // @TODO remove this line, it was for testing....
+        dbWrite = dBhandler.getWritableDatabase(); // this will run onCreate in DBhandler...
+        // Instantiate the User
+        user = new User();
+        // @TODO build dummy gets a fake user from the database...delete this agter login section is working
+        //user.buildDummy(dbWrite, sharedPreferences);
+
+        // check if the user is logged in...if name is null then no user is loggedIn
+        /* TODO reactivate this block of code after dummy testing to start login activity
+        if (sharedPreferences.getString("name", null) == null){
+            Intent intent = new Intent(this, LogIn.class);
+            startActivity(intent);
+        }*/
+
     }
 
-    public void deleteThis(View view){
+    public void openLogin(View view){ // starts a login instance....
         Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }
