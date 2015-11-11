@@ -20,18 +20,47 @@ public class User {
 
     }
 
+    // this method fills the user data from the shared preferences information
+    public void fillUserFromPrefs(SharedPreferences sharedPreferences) {
+        this.name = sharedPreferences.getString("name", null);
+        this.weight = sharedPreferences.getFloat("weight", 0);
+        this.height = sharedPreferences.getFloat("height", 0);
+        this.BMI = sharedPreferences.getFloat("BMI", 0);
+        this.BMR = sharedPreferences.getFloat("BMR", 0);
+        this.start_weight = sharedPreferences.getFloat("Starting_Weight", 0);
+        this.start_lvl = sharedPreferences.getInt("Start_LVL", 0);
+        this.cal_needs = sharedPreferences.getFloat("Cal_Needs", 0);
+        this.cur_weight = sharedPreferences.getFloat("Current_Weight", 0);
+        this.cur_lvl = sharedPreferences.getInt("Cur_Lvl", 0);
+        this.email = sharedPreferences.getString("Email", null);
+        this.phone = sharedPreferences.getString("Phone", null);
+    }
+
     //@TODO this is a sample to get through the database
-    public void buildDummy(SQLiteDatabase db, SharedPreferences sharedPreferences){
+    public void buildDummy(SQLiteDatabase db, SharedPreferences.Editor sharedEditor){
+        // set query to execute
         String query = "SELECT * FROM Users;";
-
-        Cursor c = db.rawQuery(query ,null);
+        // set a cursor to run the query
+        Cursor c = db.rawQuery(query, null);
+        // move to the first row
         c.moveToFirst();
-
-        sharedPreferences.edit().putString("name", name = c.getString(1));
-        sharedPreferences.edit().putFloat("weight", weight = c.getFloat(2));
-        sharedPreferences.edit().putFloat("height", height = c.getFloat(3));
-
-        Log.i(TAG, "name is: "+ name);
+        // clear the shared preferences
+        sharedEditor.clear();
+        // set both the shared prefernces and the user elements...
+        sharedEditor.putString("name", name = c.getString(1));
+        sharedEditor.putFloat("weight", weight = c.getFloat(2));
+        sharedEditor.putFloat("height", height = c.getFloat(3));
+        sharedEditor.putFloat("BMI", BMI = c.getFloat(4));
+        sharedEditor.putFloat("BMR", BMR = c.getFloat(5));
+        sharedEditor.putFloat("Starting_Weight", start_weight = c.getFloat(6));
+        sharedEditor.putInt("Start_LVL", start_lvl = c.getInt(7));
+        sharedEditor.putFloat("Cal_Needs", cal_needs = c.getFloat(8));
+        sharedEditor.putFloat("Current_Weight", cur_weight = c.getFloat(9));
+        sharedEditor.putInt("Cur_Lvl", cur_lvl = c.getInt(10));
+        sharedEditor.putString("Email", email = c.getString(11));
+        sharedEditor.putString("Phone", phone = c.getString(12));
+        // commit changes to shared preferences
+        sharedEditor.commit();
     }
 
     public void setName(String name) {
@@ -129,4 +158,6 @@ public class User {
     public int getCur_lvl() {
         return cur_lvl;
     }
+
+
 }

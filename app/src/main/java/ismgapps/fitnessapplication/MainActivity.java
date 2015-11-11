@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -58,8 +59,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Context context = this;
 
-        sharedPreferences = this.getSharedPreferences("user_info", MODE_PRIVATE);
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
 
         //make fragments
         fitnessFrag = new MyFitness();
@@ -73,15 +76,23 @@ public class MainActivity extends AppCompatActivity
         dbWrite = dBhandler.getWritableDatabase(); // this will run onCreate in DBhandler...
         // Instantiate the User
         user = new User();
-        // @TODO build dummy gets a fake user from the database...delete this agter login section is working
-        //user.buildDummy(dbWrite, sharedPreferences);
-
+        //user.buildDummy(dbWrite, editor); // @TODO build dummy gets a fake user from the database...delete this after login section is working
         // check if the user is logged in...if name is null then no user is loggedIn
-        /* TODO reactivate this block of code after dummy testing to start login activity
         if (sharedPreferences.getString("name", null) == null){
+
+        /* TODO reactivate this block of code after dummy testing to start login activity
             Intent intent = new Intent(this, LogIn.class);
-            startActivity(intent);
-        }*/
+            startActivity(intent);*/
+
+            Log.d(TAG, "no user data exists in shared prefs");
+        }
+        else{ // fill user from saved preferences ...
+            user.fillUserFromPrefs(sharedPreferences);
+            Log.d(TAG, "user data filled from preferences");
+        }
+
+        Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
+
 
     }
 
