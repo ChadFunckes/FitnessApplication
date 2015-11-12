@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 
+
+
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -18,6 +21,8 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class Recipies extends Fragment {
+
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -59,6 +64,8 @@ public class Recipies extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
+
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -105,5 +112,8 @@ public class Recipies extends Fragment {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
+
+
+
 
 }
