@@ -23,7 +23,7 @@ import android.view.View;
 // @TODO clean up interaction listeners....
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MyFitness.OnFragmentInteractionListener,
-        Today.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
+        Today.OnFragmentInteractionListener, Workouts.WorkoutListListener, Recipies.OnFragmentInteractionListener {
 
     private final String TAG = "MainActivity"; // use this tag for log actions
     public SharedPreferences sharedPreferences; // get access to the shared preferences
@@ -165,6 +165,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+
+    }
+
+    @Override
+    public void itemClicked(long id) {
 
     }
 }
