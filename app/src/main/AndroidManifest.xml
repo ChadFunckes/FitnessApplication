@@ -32,7 +32,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>
         <activity
-            android:name=".Recipies2"
+            android:name=".Recipies"
             android:label="@string/title_activity_recipies2"
             android:theme="@style/AppTheme.NoActionBar" >
         </activity>

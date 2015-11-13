@@ -1,71 +1,20 @@
 package ismgapps.fitnessapplication;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
 
-
-
-
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link Recipies.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link Recipies#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class Recipies extends Fragment {
-
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    Button b1000,b1200,b1500;
+    ImageView jpg1000,jpg1200,jpg1500;
 
     private OnFragmentInteractionListener mListener;
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Recipies.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Recipies newInstance() {
-        Recipies fragment = new Recipies();
-        Bundle args = new Bundle();
-        //args.putString(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    public Recipies() {
-        // Required empty public constructor
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -74,11 +23,48 @@ public class Recipies extends Fragment {
         return inflater.inflate(R.layout.fragment_recipies, container, false);
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
+    @Override
+    public void onViewCreated(View view, Bundle onSavedInstanceState){
+        super.onViewCreated(view, onSavedInstanceState);
+        cal1000();
+        cal1200();
+        cal1500();
+    }
+
+    public void cal1000(){
+        jpg1000 = (ImageView) getView().findViewById(R.id.imageView3);
+        b1000 = (Button) getView().findViewById(R.id.button2);
+        b1000.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jpg1000.setImageResource(R.drawable.p1000);
+                jpg1000.setScaleType(ImageView.ScaleType.CENTER);
+            }
+        });
+    }
+
+    public void cal1200(){
+        jpg1200 = (ImageView) getView().findViewById(R.id.imageView3);
+        b1200 = (Button) getView().findViewById(R.id.button3);
+        b1200.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jpg1200.setImageResource(R.drawable.p1200);
+                jpg1200.setScaleType(ImageView.ScaleType.CENTER);
+            }
+        });
+    }
+
+    public void cal1500(){
+        jpg1500 = (ImageView) getView().findViewById(R.id.imageView3);
+        b1500 = (Button) getView().findViewById(R.id.button4);
+        b1500.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                jpg1500.setImageResource(R.drawable.p1500);
+                jpg1500.setScaleType(ImageView.ScaleType.CENTER);
+            }
+        });
     }
 
     @Override
@@ -98,22 +84,9 @@ public class Recipies extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         public void onFragmentInteraction(Uri uri);
     }
-
-
-
 
 }

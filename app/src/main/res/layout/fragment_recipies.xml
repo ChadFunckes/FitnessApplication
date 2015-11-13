@@ -1,22 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context="ismgapps.fitnessapplication.Recipies">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView android:layout_width="match_parent" android:layout_height="match_parent"
-        android:text="Recipies Fragment" />
+    <!-- From Chad:  I took this section out, because I don't have the resource that is being
+     referenced here, so I don't know what it supposed to be...
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView2"
-        android:layout_gravity="left|center_vertical" />
+    android:background="@drawable/diet" I don't know what this is trying to reference?
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button"
-        android:layout_gravity="center_horizontal|top" />
+    -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+
+        tools:showIn="@layout/activity_recipies2"
+        tools:context="ismgapps.fitnessapplication.Recipies"
+        android:transitionGroup="false"
+        android:clickable="false">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Diet Plans"
+            android:id="@+id/textView5"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1000Calories"
+            android:id="@+id/button2"
+            android:layout_below="@+id/textView5"
+            android:layout_alignParentStart="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1200Calories"
+            android:id="@+id/button3"
+            android:layout_alignTop="@+id/button2"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1500Calories"
+            android:id="@+id/button4"
+            android:layout_alignTop="@+id/button3"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1800Calories"
+            android:id="@+id/button5"
+            android:layout_below="@+id/button2"
+            android:layout_alignEnd="@+id/textView5"
+            android:layout_marginEnd="46dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2000Calories"
+            android:id="@+id/button6"
+            android:layout_alignTop="@+id/button5"
+            android:layout_alignEnd="@+id/button4"
+            android:layout_marginEnd="48dp" />
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button6"
+            >
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView3"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        </ScrollView></RelativeLayout>
 
 </FrameLayout>
