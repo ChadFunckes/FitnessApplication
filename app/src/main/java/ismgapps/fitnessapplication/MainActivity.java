@@ -23,7 +23,7 @@ import android.view.View;
 // @TODO clean up interaction listeners....
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MyFitness.OnFragmentInteractionListener,
-        Today.OnFragmentInteractionListener, Workouts.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
+        Today.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
 
     private final String TAG = "MainActivity"; // use this tag for log actions
     public SharedPreferences sharedPreferences; // get access to the shared preferences
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     // set up fragments
     public MyFitness fitnessFrag;
     public Today todayFrag;
-    public Workouts workoutFrag;
+    //public Workouts workoutFrag;
     public Recipies recipieFrag;
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
         //make fragments
         fitnessFrag = new MyFitness();
         todayFrag = new Today();
-        workoutFrag = new Workouts();
+        //workoutFrag = new Workouts();
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);
@@ -146,8 +146,8 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.workouts:
                 Log.i(TAG, "workout button hit...");
-                ft.replace(R.id.mainFrame, workoutFrag).addToBackStack(null).commit();
-                fragmentManager.executePendingTransactions();
+                Intent intent = new Intent(this, WorkoutActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.recipies:
@@ -155,7 +155,6 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.mainFrame, recipieFrag).addToBackStack(null).commit();
                 fragmentManager.executePendingTransactions();
                 break;
-
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

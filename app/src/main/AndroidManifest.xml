@@ -27,15 +27,17 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".BmiCalculator"
-            android:label="@string/title_activity_bmi_calculator"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".WorkoutActivity"
+            android:label="@string/title_activity_workout"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <!-- The meta-data element is needed for versions lower than 4.1 -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
         </activity>
-        <activity
-            android:name=".Recipies"
-            android:label="@string/title_activity_recipies2"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+
+
     </application>
 
 </manifest>
