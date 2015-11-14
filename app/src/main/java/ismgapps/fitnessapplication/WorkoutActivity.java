@@ -20,7 +20,8 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
         setContentView(R.layout.activity_workout);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
     @Override
