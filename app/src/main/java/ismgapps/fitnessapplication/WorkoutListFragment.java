@@ -16,33 +16,24 @@ import android.widget.TextView;
 
 import ismgapps.fitnessapplication.dummy.DummyContent;
 
-public class Workouts extends ListFragment {
+public class WorkoutListFragment extends ListFragment {
 
     static interface WorkoutListListener{
         void itemClicked(long id);
     }
 
-    private WorkoutListListener listner;
-
-    private OnFragmentInteractionListener mListener;
-
-    private AbsListView mListView;
+    private WorkoutListListener listener;
+    //private OnFragmentInteractionListener mListener;
 
     /**
-     * The Adapter which will be used to populate the ListView/GridView with
-     * Views.
+     * Mandatory empty constructor for the fragment manager to instantiate the
+     * fragment (e.g. upon screen orientation changes).
      */
-    private ListAdapter mAdapter;
-
-
-
-    public Workouts() {
+    public WorkoutListFragment() {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_item, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         // geting from workout.java class
         String[] names = new String[WorkoutData.workouts.length];
@@ -58,27 +49,16 @@ public class Workouts extends ListFragment {
     }
 
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Activity activity){
         super.onAttach(activity);
-        this.listner = (WorkoutListListener)activity;
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
+        this.listener = (WorkoutListListener)activity;
     }
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id){
-        if (listner != null){
-            listner.itemClicked(id);
+        if (listener != null){
+            listener.itemClicked(id);
         }
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        public void onFragmentInteraction(String id);
     }
 
 }

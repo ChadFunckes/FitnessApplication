@@ -13,4 +13,5 @@
     <string name="LogIn">Log In</string>
     <string name="title_activity_bmi_calculator">BmiCalculator</string>
     <string name="title_activity_recipies2">Recipies2</string>
+    <string name="title_activity_workout">WorkoutActivity</string>
 </resources>
