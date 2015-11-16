@@ -97,7 +97,8 @@
             android:id="@+id/Result"
             android:layout_below="@+id/calculate"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="49dp" />
+            android:layout_marginTop="49dp"
+            android:background="#aba8a8" />
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
