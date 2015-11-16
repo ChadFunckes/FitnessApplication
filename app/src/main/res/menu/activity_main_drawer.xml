@@ -10,6 +10,8 @@
             android:title="Workouts" />
         <item android:id="@+id/recipies" android:icon="@drawable/tape"
             android:title="Recipies" />
+        <item android:id="@+id/BMI" android:icon="@drawable/run"
+            android:title="BMI" />
     </group>
 
     <!-- lower menu items commented out

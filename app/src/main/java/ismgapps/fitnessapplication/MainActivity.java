@@ -155,6 +155,12 @@ public class MainActivity extends AppCompatActivity
                 ft.replace(R.id.mainFrame, recipieFrag).addToBackStack(null).commit();
                 fragmentManager.executePendingTransactions();
                 break;
+
+            case R.id.BMI:
+                Log.i(TAG, "BMI button hit....");
+                Intent BMIintent = new Intent(this, bmi.class);
+                startActivity(BMIintent);
+                break;
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
