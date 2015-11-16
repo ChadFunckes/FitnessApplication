@@ -38,7 +38,7 @@ public class Recipies extends Fragment {
         b1000.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1000.setImageResource(R.drawable.p1000);
+                jpg1000.setImageResource(R.drawable.image1000);
                 jpg1000.setScaleType(ImageView.ScaleType.FIT_END);
             }
         });
@@ -50,7 +50,7 @@ public class Recipies extends Fragment {
         b1200.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1200.setImageResource(R.drawable.p1200);
+                jpg1200.setImageResource(R.drawable.image1200);
                 jpg1200.setScaleType(ImageView.ScaleType.FIT_END);
             }
         });
@@ -62,7 +62,7 @@ public class Recipies extends Fragment {
         b1500.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1500.setImageResource(R.drawable.p1500);
+                jpg1500.setImageResource(R.drawable.image1500);
                 jpg1500.setScaleType(ImageView.ScaleType.FIT_END);
             }
         });
@@ -74,7 +74,7 @@ public class Recipies extends Fragment {
         b1800.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1800.setImageResource(R.drawable.p1800);
+                jpg1800.setImageResource(R.drawable.image1800);
                 jpg1800.setScaleType(ImageView.ScaleType.FIT_END);
             }
         });
