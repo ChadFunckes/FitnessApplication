@@ -36,7 +36,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".bmi"
+        <activity android:name=".BmiCalculator"
             android:label="BMI"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
