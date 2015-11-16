@@ -74,7 +74,7 @@ public class Recipies extends Fragment {
         b1800.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1800.setImageResource(R.drawable.image1800);
+                //jpg1800.setImageResource(R.drawable.image1800);
                 jpg1800.setScaleType(ImageView.ScaleType.FIT_END);
             }
         });
