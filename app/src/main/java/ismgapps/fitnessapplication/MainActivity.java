@@ -158,7 +158,7 @@ public class MainActivity extends AppCompatActivity
 
             case R.id.BMI:
                 Log.i(TAG, "BMI button hit....");
-                Intent BMIintent = new Intent(this, bmi.class);
+                Intent BMIintent = new Intent(this, BmiCalculator.class);
                 startActivity(BMIintent);
                 break;
         }
