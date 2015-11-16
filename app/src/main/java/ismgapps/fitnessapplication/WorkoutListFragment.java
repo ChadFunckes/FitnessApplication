@@ -24,6 +24,8 @@ public class WorkoutListFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
 
         // geting from workout.java class
+
+
         String[] names = new String[WorkoutData.workouts.length];
         for (int i = 0; i < names.length; i++){
             names[i] = WorkoutData.workouts[i].getName();
