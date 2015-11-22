@@ -36,25 +36,23 @@ public class BmiCalculator extends AppCompatActivity {
             EditText H = (EditText)findViewById(R.id.hight);
             TextView r = (TextView)findViewById(R.id.Result);
 
-            // get a user input
-            float weight = Float.parseFloat(W.getText().toString());
-            float height = Float.parseFloat(H.getText().toString());
 
-            float bmiValue = calculateBMI(weight, height);
+            // get a user input
+            float UserHeight = Float.parseFloat(H.getText().toString());
+            float UserWeight = Float.parseFloat(W.getText().toString());
+            float bmiValue = BMI(UserWeight, UserHeight);
 
             // interpret the meaning of the bmi value
             String bmiInterpretation = interpretBMI(bmiValue);
 
-            // now set the value in the result text
+            // show the result
 
-            r.setText(bmiValue + "-" + bmiInterpretation);
+            r.setText(bmiValue + "   " + bmiInterpretation);
         }
     }
 
-    // the formula to calculate the BMI index
-
     // check for http://en.wikipedia.org/wiki/Body_mass_index
-    private float calculateBMI (float weight, float height) {
+    private float BMI (float weight, float height) {
 
         return (float) (weight * 4.88 / (height * height));
     }
@@ -62,17 +60,17 @@ public class BmiCalculator extends AppCompatActivity {
 
 
 
-    private String interpretBMI(float bmiValue) {
+    private String interpretBMI(float bmiResult) {
 
-        if (bmiValue < 16) {
+        if (bmiResult < 16) {
             return " You are Severely underweight ";
-        } else if (bmiValue < 18.5) {
+        } else if (bmiResult < 18.5) {
 
             return "You are Underweight";
-        } else if (bmiValue < 25) {
+        } else if (bmiResult < 25) {
 
             return "You are Normal";
-        } else if (bmiValue < 30) {
+        } else if (bmiResult < 30) {
 
             return "You are Overweight";
         } else {
