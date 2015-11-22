@@ -6,10 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class WorkoutActivity extends AppCompatActivity implements WorkoutListFragment.WorkoutListListener {
 
-    public static String WORKOUT_NUMBER = "workoutNo";
+    private long workoutId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +22,18 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
 
+    public void addWorkout(View view){
+        // call to add workout
+    }
+
+    public void removeWorkout(View view){
+        // call to remove workout
+
+    }
+
     @Override
     public void itemClicked(long id) {
+        workoutId = id; // set global ID so that button clicks have access... @TODO make this the workout id not the position in the list
         WorkoutDetailFragment details = new WorkoutDetailFragment();
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         details.setWorkout(id);

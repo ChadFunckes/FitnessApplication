@@ -25,10 +25,9 @@ public class WorkoutListFragment extends ListFragment {
 
         // geting from workout.java class
 
-
-        String[] names = new String[WorkoutData.workouts.length];
+        String[] names = new String[WorkoutData.workouts.size()];
         for (int i = 0; i < names.length; i++){
-            names[i] = WorkoutData.workouts[i].getName();
+            names[i] = WorkoutData.workouts.get(i).getName();
         }
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(

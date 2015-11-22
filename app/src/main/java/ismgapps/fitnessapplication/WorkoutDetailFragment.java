@@ -9,21 +9,21 @@ import android.widget.TextView;
 
 
 public class WorkoutDetailFragment extends Fragment {
-    private long workoutId;
+    private int workoutId;
 
     public WorkoutDetailFragment() {
         // Required empty public constructor
     }
 
     public void setWorkout(long id) {
-        this.workoutId = id;
+        this.workoutId = (int) id;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         if (savedInstanceState != null) {
-            workoutId = savedInstanceState.getLong("workoutId");
+            workoutId = (int) savedInstanceState.getLong("workoutId");
         }
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_workout_detail, container, false);
@@ -35,7 +35,7 @@ public class WorkoutDetailFragment extends Fragment {
         View view = getView();
         if (view != null) {
             TextView title = (TextView) view.findViewById(R.id.textTitle);
-            WorkoutData workout = WorkoutData.workouts[(int) workoutId];
+            WorkoutData workout = WorkoutData.workouts.get(workoutId);
             title.setText(workout.getName());
             TextView description = (TextView) view.findViewById(R.id.textDescription);
             description.setText(workout.getDescription());
