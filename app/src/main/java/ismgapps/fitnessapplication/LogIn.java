@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 public class LogIn extends AppCompatActivity {
 
+    private User user = MainActivity.user;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

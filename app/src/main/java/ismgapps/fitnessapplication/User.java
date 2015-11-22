@@ -10,6 +10,7 @@ public class User {
     private String name, email, phone;
     private float weight, height, BMI, BMR, start_weight, cal_needs, cur_weight;
     private int start_lvl, cur_lvl;
+    //private SQLiteDatabase DBwriter = MainActivity.dbWrite;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -62,11 +63,18 @@ public class User {
         // commit changes to shared preferences
         editor.commit();
     }
+    // removed a user from sharedPreferences
+    public void logOut(){
+        editor.remove("name").remove("weight").remove("height").remove("BMI").remove("BMR");
+        editor.remove("Starting_Weight").remove("Start_LVL").remove("Cal_Needs").remove("Current_Weight");
+        editor.remove("Cur_Lvl").remove("Email").remove("Phone").commit();
+    }
 
-    public void commitUserToDB(SQLiteDatabase db){
+    public void commitUserToDB(){
         DBhandler.InsertUser(this);
         commitUserToPrefs();
     }
+
     private void commitUserToPrefs(){ // called only after database is updated
         editor.clear();
         editor.putString("name", name);

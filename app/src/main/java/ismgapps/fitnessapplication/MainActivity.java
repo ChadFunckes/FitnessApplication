@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity
     private final String TAG = "MainActivity"; // use this tag for log actions
     public SharedPreferences sharedPreferences; // get access to the shared preferences
     // create the logged in user object
-    private User user;
+    static User user;
     // set up fragments
     public MyFitness fitnessFrag;
     public Today todayFrag;
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
     // get database handeling objects
-    private SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
+    static SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
     private DBhandler dBhandler; // database helper object
 
     @Override
@@ -69,12 +69,11 @@ public class MainActivity extends AppCompatActivity
         // Instantiate the User
         user = new User(sharedPreferences); // build user based on stored preferences
         user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
-
+        //user.logOut();
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
-        /* TODO reactivate this block of code after dummy testing to start login activity
             Intent intent = new Intent(this, LogIn.class);
-            startActivity(intent);*/
+            startActivity(intent);
             Log.d(TAG, "no user data exists in shared prefs");
         }
         else{ // fill user from saved preferences ...
