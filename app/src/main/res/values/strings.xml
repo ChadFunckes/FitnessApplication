@@ -6,5 +6,4 @@
     <string name="action_settings">Settings</string>
     <string name="LogIn">Log In</string>
     <string name="title_activity_workout">Workout List</string>
-    <string name="title_activity_add_workout">Add Workout</string>
 </resources>
