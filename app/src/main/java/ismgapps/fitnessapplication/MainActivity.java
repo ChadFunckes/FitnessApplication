@@ -120,6 +120,9 @@ public class MainActivity extends AppCompatActivity
             Log.i("xx", "settings button selected");
             return true;
         }
+        else if (id == R.id.logout){
+            user.logOut();
+        }
 
         return super.onOptionsItemSelected(item);
     }

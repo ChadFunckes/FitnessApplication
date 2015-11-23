@@ -28,7 +28,6 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
 
     public void removeWorkout(View view){
         // call to remove workout
-
     }
 
     @Override

@@ -22,14 +22,12 @@ public class WorkoutListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-
-        // geting from workout.java class
-
+        // geting from workoutData.java class
         String[] names = new String[WorkoutData.workouts.size()];
         for (int i = 0; i < names.length; i++){
             names[i] = WorkoutData.workouts.get(i).getName();
         }
-
+        // show the list
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(
                 inflater.getContext(), android.R.layout.simple_list_item_1, names);
         setListAdapter(adapter);
