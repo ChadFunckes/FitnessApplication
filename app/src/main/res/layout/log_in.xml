@@ -68,4 +68,36 @@
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@+id/password"
         android:layout_marginBottom="40dp" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameGoodImage"
+        android:src="@drawable/goodblock"
+        android:layout_below="@+id/textView2"
+        android:layout_above="@+id/textView3"
+        android:layout_alignEnd="@+id/button3"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/passwordBadImage"
+        android:src="@drawable/badblock"
+        android:layout_alignBottom="@+id/password"
+        android:layout_alignTop="@+id/password"
+        android:layout_alignEnd="@+id/nameGoodImage"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameBadImage"
+        android:src="@drawable/badblock"
+        android:layout_above="@+id/textView3"
+        android:layout_alignStart="@+id/nameGoodImage"
+        android:layout_alignTop="@+id/name"
+        android:layout_alignEnd="@+id/nameGoodImage"
+        android:visibility="invisible" />
+
 </RelativeLayout>

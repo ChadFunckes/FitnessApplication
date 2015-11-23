@@ -1,18 +1,19 @@
 package ismgapps.fitnessapplication;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 
 public class LogIn extends AppCompatActivity {
     private static final String TAG = "Login Activity";
     //private User user = MainActivity.user;
     private EditText name, password;
+    private ImageView nameGood, nameBad, passBad;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +21,9 @@ public class LogIn extends AppCompatActivity {
         setContentView(R.layout.log_in);
         name = (EditText) findViewById(R.id.name);
         password = (EditText) findViewById(R.id.password);
+        nameGood = (ImageView) findViewById(R.id.nameGoodImage);
+        nameBad = (ImageView) findViewById(R.id.nameBadImage);
+        passBad = (ImageView) findViewById(R.id.passwordBadImage);
     }
     public void Register (View view){
         Intent i = new Intent(this, RegisterActivity.class);
@@ -37,9 +41,13 @@ public class LogIn extends AppCompatActivity {
                 break;
             case (1):
                 Log.d(TAG, "User Name was not found");
+                nameBad.setVisibility(View.VISIBLE);
+                passBad.setVisibility(View.VISIBLE);
                 break;
             case (2):
                 Log.d(TAG, "Password was not found");
+                nameBad.setVisibility(View.INVISIBLE);
+                nameGood.setVisibility(View.VISIBLE);
                 break;
         }
     }
