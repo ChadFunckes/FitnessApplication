@@ -7,10 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 public class User {
     private final String TAG = "User Class Activity";
 
-    private String name, email, phone;
+    private String name, password, email, phone;
     private float weight, height, BMI, BMR, start_weight, cal_needs, cur_weight;
     private int start_lvl, cur_lvl;
-    //private SQLiteDatabase DBwriter = MainActivity.dbWrite;
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
@@ -24,6 +23,7 @@ public class User {
     // this method fills the user data from the shared preferences information
     public void fillUserFromPrefs() {
         this.name = sharedPreferences.getString("name", null);
+        this.password = sharedPreferences.getString("password", null);
         this.weight = sharedPreferences.getFloat("weight", 0);
         this.height = sharedPreferences.getFloat("height", 0);
         this.BMI = sharedPreferences.getFloat("BMI", 0);
@@ -49,25 +49,24 @@ public class User {
         editor.clear();
         // set both the shared prefernces and the user elements...
         editor.putString("name", name = c.getString(1));
-        editor.putFloat("weight", weight = c.getFloat(2));
-        editor.putFloat("height", height = c.getFloat(3));
-        editor.putFloat("BMI", BMI = c.getFloat(4));
-        editor.putFloat("BMR", BMR = c.getFloat(5));
-        editor.putFloat("Starting_Weight", start_weight = c.getFloat(6));
-        editor.putInt("Start_LVL", start_lvl = c.getInt(7));
-        editor.putFloat("Cal_Needs", cal_needs = c.getFloat(8));
-        editor.putFloat("Current_Weight", cur_weight = c.getFloat(9));
-        editor.putInt("Cur_Lvl", cur_lvl = c.getInt(10));
-        editor.putString("Email", email = c.getString(11));
-        editor.putString("Phone", phone = c.getString(12));
+        editor.putString("password", password = c.getString(2));
+        editor.putFloat("weight", weight = c.getFloat(3));
+        editor.putFloat("height", height = c.getFloat(4));
+        editor.putFloat("BMI", BMI = c.getFloat(5));
+        editor.putFloat("BMR", BMR = c.getFloat(6));
+        editor.putFloat("Starting_Weight", start_weight = c.getFloat(7));
+        editor.putInt("Start_LVL", start_lvl = c.getInt(8));
+        editor.putFloat("Cal_Needs", cal_needs = c.getFloat(9));
+        editor.putFloat("Current_Weight", cur_weight = c.getFloat(10));
+        editor.putInt("Cur_Lvl", cur_lvl = c.getInt(11));
+        editor.putString("Email", email = c.getString(12));
+        editor.putString("Phone", phone = c.getString(13));
         // commit changes to shared preferences
         editor.commit();
     }
     // removed a user from sharedPreferences
     public void logOut(){
-        editor.remove("name").remove("weight").remove("height").remove("BMI").remove("BMR");
-        editor.remove("Starting_Weight").remove("Start_LVL").remove("Cal_Needs").remove("Current_Weight");
-        editor.remove("Cur_Lvl").remove("Email").remove("Phone").commit();
+        editor.clear().commit();
     }
 
     public void commitUserToDB(){
@@ -75,9 +74,10 @@ public class User {
         commitUserToPrefs();
     }
 
-    private void commitUserToPrefs(){ // called only after database is updated
+    public void commitUserToPrefs(){
         editor.clear();
         editor.putString("name", name);
+        editor.putString("password", password);
         editor.putFloat("weight", weight);
         editor.putFloat("height", height);
         editor.putFloat("BMI", BMI);
@@ -95,6 +95,8 @@ public class User {
     public void setName(String name) {
         this.name = name;
     }
+
+    public void setPassword(String password) { this.password = password; }
 
     public void setEmail(String email) {
         this.email = email;
@@ -143,6 +145,8 @@ public class User {
     public String getName() {
         return name;
     }
+
+    public String getPassword() { return password; }
 
     public String getEmail() {
         return email;

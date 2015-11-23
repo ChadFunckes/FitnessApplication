@@ -68,9 +68,9 @@ public class MainActivity extends AppCompatActivity
         // get writable database access
         dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
-        user = new User(sharedPreferences); // build user based on stored preferences
+        if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
         //user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
-        user.logOut();
+        //user.logOut();
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
@@ -89,6 +89,11 @@ public class MainActivity extends AppCompatActivity
     public void openLogin(View view){ // starts a login instance....
         Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
+    }
+    // force a restart of the mainActivity (like for a logout, etc.)
+    public void restartMain(){
+        finish();
+        startActivity(getIntent());
     }
 
     @Override
@@ -120,7 +125,8 @@ public class MainActivity extends AppCompatActivity
             return true;
         }
         else if (id == R.id.logout){
-            user.logOut();
+            user.logOut(); // logout from shared prefs
+            restartMain(); // restart to show change
             return true;
         }
 

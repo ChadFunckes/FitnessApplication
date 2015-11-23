@@ -19,12 +19,11 @@ public class DBhandler extends SQLiteOpenHelper{
     private static final String TABLE_RECIPIES = "Recipies";// name for table to hold recipie info
     private static final String TABLE_WORKOUTS = "Workouts";// name for table to hold workout details
     private static final String TABLE_FITNESS_RECORD = "Record";// table to keep track of daily workouts record
-
+    //public constructor
     public DBhandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.dbContext = context;
     }
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         this.db = db;
@@ -35,18 +34,17 @@ public class DBhandler extends SQLiteOpenHelper{
         fillWorkoutTable();
         // @TODO make the records table
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // no upgrade instructions yet
     }
-
     // this will create the users table, method to be used in onCreate
     private void createUserTable(){
         Log.d(TAG, "Creating user table...");
         String CMD = "CREATE TABLE IF NOT EXISTS "+ TABLE_USER +
                 " ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "Name TEXT NOT NULL, " +
+                "Password TEXT NOT NULL, " +
                 "Weight FLOAT NOT NULL, " +
                 "Height FLOAT NOT NULL, " +
                 "BMI FLOAT NOT NULL, " +
@@ -66,7 +64,8 @@ public class DBhandler extends SQLiteOpenHelper{
         // to create a record, create a values object, put in the values paid and insert(TABLE, null, values)
         ContentValues values = new ContentValues();
         values.put("_id", 1);
-        values.put("Name", "Test User");
+        values.put("Name", "Test");
+        values.put("Password", "pass");
         values.put("Height", 67);
         values.put("Weight", 200);
         values.put("BMI", 31.32);
@@ -86,6 +85,7 @@ public class DBhandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         //values.put("_id", xxxxx); // user _id is autoIncrement
         values.put("Name", user.getName());
+        values.put("Password", user.getPassword());
         values.put("Height", user.getHeight());
         values.put("Weight", user.getWeight());
         values.put("BMI", user.getBMI());
@@ -100,6 +100,37 @@ public class DBhandler extends SQLiteOpenHelper{
 
         MainActivity.dbWrite.insert(TABLE_USER, null, values);
     }
+    // check login information
+    public int checkUserLogin(String name, String password){
+        Log.d(TAG, "Check user login operation hit with name " + name + " and password " + password);
+        // return 1 if name was incorrect, 2 if password is incorrect and 0 if successful
+        String CMD = "SELECT * FROM " + TABLE_USER + " WHERE Name ='" + name + "';";
+        Cursor c = db.rawQuery(CMD, null);
+        if (c.getCount() < 1){ return 1; }// name was not found
+        else{
+            c.moveToFirst(); // put cursor back
+            if (!c.getString(2).equals(password)){ return 2; } // password was not found
+        }
+        // user name and password found!!
+        // build up current user
+        MainActivity.user.setName(c.getString(1));
+        MainActivity.user.setPassword(c.getString(2));
+        MainActivity.user.setWeight(c.getFloat(3));
+        MainActivity.user.setHeight(c.getFloat(4));
+        MainActivity.user.setBMI(c.getFloat(5));
+        MainActivity.user.setBMR(c.getFloat(6));
+        MainActivity.user.setStart_weight(c.getFloat(7));
+        MainActivity.user.setStart_lvl(c.getInt(8));
+        MainActivity.user.setCal_needs(c.getFloat(9));
+        MainActivity.user.setCur_weight(c.getFloat(10));
+        MainActivity.user.setCur_lvl(c.getInt(11));
+        MainActivity.user.setEmail(c.getString(12));
+        MainActivity.user.setPhone(c.getString(13));
+        // put the user info into userPrefs (loggedIN info)
+        MainActivity.user.commitUserToPrefs();
+        return 0;
+    }
+
     // this will create the workout table
     private void createWorkoutTable(){
         Log.d(TAG, "Creating Workout Table");
