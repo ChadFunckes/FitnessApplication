@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -33,16 +34,17 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
     // call to add workout
     public void addWorkout(View view){
         Log.d(TAG, "add workout pressed");
-
+        Intent intent = new Intent(this, AddWorkoutActivity.class);
+        startActivity(intent);
     }
     // call to remove workout
     public void removeWorkout(View view){
         Log.d(TAG, "remove workout pressed");
-        /// reminder that this class's element workoutIDSelected contains the _ID from the database to delete!!
+        /// reminder that this class's element workoutIDSelected contains the _ID from the database to delete and workoutPosition is the position in the list
         if (details != null && details.isVisible()){ // if there was a details fragment in the frame an item was selected
             new AlertDialog.Builder(this)
                     .setTitle("Confirm Delete")
-                    .setMessage("Are you sure you want to delete:\n" + "")
+                    .setMessage("Are you sure you want to delete:\n" + WorkoutData.workouts.get(workoutPosition).getName())
                     .setPositiveButton("yes", new DialogInterface.OnClickListener(){
                         public void onClick(DialogInterface dialog, int which){
                             Log.d(TAG, "yes button selected");
@@ -52,10 +54,10 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
                             finish();
                             startActivity(getIntent());
                         }
-                    }).setNegativeButton("no", new DialogInterface.OnClickListener(){
-                        public void onClick(DialogInterface dialog, int which){
-                            Log.d(TAG, "cancel hit");
-                        }
+                    }).setNegativeButton("no", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Log.d(TAG, "cancel hit");
+                }
             }).show();
         }
         else {
