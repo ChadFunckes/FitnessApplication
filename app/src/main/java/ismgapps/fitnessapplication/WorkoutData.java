@@ -1,21 +1,45 @@
 package ismgapps.fitnessapplication;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+import java.util.ArrayList;
+import java.util.List;
+
 public class WorkoutData {
+    private int ID;
     private String name;
     private String description;
-    private double cal_count;
+    private float cal_count;
+    private int multiplier;
 
-    public static final WorkoutData[] workouts = {
-            new WorkoutData("The Limb Loosener", "5 Handstand push-ups\n10 1-legged squats\n15 pull-ups", 1.2),
-            new WorkoutData("Core Agony", "100 Pull-ups\n100 Push-ups\n100 Sit-ups\n100 Squats", 2.2),
-            new WorkoutData("The Wimp Special", "5 Pull-ups\n10 Push-ups\n15 Squats", 3.2),
-            new WorkoutData("Strength and Length", "500 meter run\n21 x 1.5 pood kettlebell swing\n21 x pull-ups", 2.4)
-    };
+    public static List<WorkoutData> workouts = getWorkouts();
 
-    private WorkoutData(String name, String description, double cal_count) {
+    private static List<WorkoutData> getWorkouts(){
+        final SQLiteDatabase db = MainActivity.dbWrite;
+        List<WorkoutData> theList = new ArrayList<WorkoutData>();
+        WorkoutData temp;
+        String query = "SELECT * FROM Workouts;";
+        Cursor c = db.rawQuery(query, null);
+        c.moveToFirst();
+        Log.d("Workout Data Class", "Starting to fill list");
+
+        while (!c.isAfterLast()){
+            temp = new WorkoutData(c.getInt(0), c.getString(1), c.getString(2), c.getFloat(3), c.getInt(4));
+            theList.add(temp);
+            temp = null;
+            c.moveToNext();
+        }
+        Log.d("Workout Data Class", "List Filled");
+        return theList;
+    }
+
+    private WorkoutData(int id, String name, String description, float cal_count, int multiplier) {
+        this.ID = id;
         this.name = name;
         this.description = description;
         this.cal_count = cal_count;
+        this.multiplier = multiplier;
     }
 
     public String getDescription() {

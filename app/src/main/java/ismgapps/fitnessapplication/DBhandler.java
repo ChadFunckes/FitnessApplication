@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 
 public class DBhandler extends SQLiteOpenHelper{
@@ -28,7 +29,8 @@ public class DBhandler extends SQLiteOpenHelper{
         createUserTable(db); // make the users table
         createTestPerson(db); // make test person
         // @TODO make the recipie table
-        // @TODO make the workout table
+        createWorkoutTable(db);
+        fillWorkoutTable(db);
         // @TODO make the records table
     }
 
@@ -39,6 +41,7 @@ public class DBhandler extends SQLiteOpenHelper{
 
     // this will create the users table, method to be used in onCreate
     private void createUserTable(SQLiteDatabase db){
+        Log.d(TAG, "Creating user table...");
         String CMD = "CREATE TABLE IF NOT EXISTS "+ TABLE_USER +
                 " ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
                 "Name TEXT NOT NULL, " +
@@ -57,6 +60,7 @@ public class DBhandler extends SQLiteOpenHelper{
     }
     // this will create a dummy person for use
     private void createTestPerson(SQLiteDatabase db){
+        Log.d(TAG, "Creating Test Person");
         // to create a record, create a values object, put in the values paid and insert(TABLE, null, values)
         ContentValues values = new ContentValues();
         values.put("_id", 1);
@@ -75,12 +79,7 @@ public class DBhandler extends SQLiteOpenHelper{
 
         db.insert(TABLE_USER, null, values);
     }
-
-    // this will delete entire database
-    public void destroyDB(){
-        dbContext.deleteDatabase(DATABASE_NAME);
-    }
-
+    // Insert a user into the database
     public static void InsertUser(User user) {
         ContentValues values = new ContentValues();
         //values.put("_id", xxxxx); // user _id is autoIncrement
@@ -97,4 +96,56 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put("Email", user.getEmail());
         values.put("Phone", user.getPhone());
     }
+    // this will create the workout table
+    private void createWorkoutTable(SQLiteDatabase db){
+        Log.d(TAG, "Creating Workout Table");
+        String CMD = "CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUTS +
+                " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
+                "Name TEXT NOT NULL, " +
+                "Description TEXT NOT NULL, "+
+                "CAL_COUNT FLOAT NOT NULL, " +
+                "IS_MULTIPLIER INTEGER NOT NULL);";
+        db.execSQL(CMD);
+    }
+    // fill the workout table with basic data
+    private void fillWorkoutTable(SQLiteDatabase db){
+        Log.d(TAG, "Filling basic workouts table");
+        String name = "Name"; String desc = "Description";
+        String count = "CAL_COUNT"; String mult = "IS_MULTIPLIER";
+        ContentValues values = new ContentValues();
+
+        values.put(name, "The Limb Loosener");
+        values.put(desc, "5 Handstand push-ups\n10 1-legged squats\n15 pull-ups");
+        values.put(count, 1.2);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Core Agony");
+        values.put(desc, "100 Pull-ups\n100 Push-ups\n100 Sit-ups\n100 Squats");
+        values.put(count, 2.2);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "The Wimp Special");
+        values.put(desc, "5 Pull-ups\n10 Push-ups\n15 Squats");
+        values.put(count, 3.2);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Strength and Length");
+        values.put(desc, "500 meter run\n21 x 1.5 pood kettlebell swing\n21 x pull-ups");
+        values.put(count, 2.4);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+    }
+
+    // this will delete entire database
+    public void destroyDB(){
+        dbContext.deleteDatabase(DATABASE_NAME);
+    }
+
 }

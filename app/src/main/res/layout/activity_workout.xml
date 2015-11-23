@@ -10,12 +10,39 @@
         android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
 
         <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <android.support.v7.widget.Toolbar android:id="@+id/toolbar2"
-            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Add Workout"
+                android:id="@+id/buttonText1"
+                android:layout_centerVertical="true"
+                android:layout_alignParentStart="true"
+                android:onClick="addWorkout"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete Workout"
+                android:id="@+id/buttonText2"
+                android:layout_alignTop="@+id/buttonText1"
+                android:layout_centerHorizontal="true"
+                android:onClick="removeWorkout"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Schedule Workout"
+                android:id="@+id/buttonText3"
+                android:layout_alignTop="@+id/buttonText2"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
 
     </android.support.design.widget.AppBarLayout>
