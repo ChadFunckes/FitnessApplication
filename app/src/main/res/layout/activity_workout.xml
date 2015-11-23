@@ -24,7 +24,8 @@
                 android:id="@+id/buttonText1"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
-                android:onClick="addWorkout"/>
+                android:onClick="addWorkout"
+                android:clickable="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -33,7 +34,8 @@
                 android:id="@+id/buttonText2"
                 android:layout_alignTop="@+id/buttonText1"
                 android:layout_centerHorizontal="true"
-                android:onClick="removeWorkout"/>
+                android:onClick="removeWorkout"
+                android:clickable="true"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -41,7 +43,10 @@
                 android:text="Schedule Workout"
                 android:id="@+id/buttonText3"
                 android:layout_alignTop="@+id/buttonText2"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:onClick="scheduleWorkout"
+                android:clickable="true"/>
+
         </RelativeLayout>
 
 

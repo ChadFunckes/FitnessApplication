@@ -1,16 +1,25 @@
 package ismgapps.fitnessapplication;
 
+import android.app.AlertDialog;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 public class WorkoutActivity extends AppCompatActivity implements WorkoutListFragment.WorkoutListListener {
-
-    private long workoutId;
+    private static final String TAG = "Workout Activity";
+    static int workoutIDSelected; // this is id FROM THE DB, not relative position in the list!!  set from WorkoutDetailFragment after selection
+    static int workoutPosition; // a workout position in the selection list
+    private WorkoutDetailFragment details;
+    FragmentManager fragmentManager = getFragmentManager();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,20 +30,48 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
     }
-
+    // call to add workout
     public void addWorkout(View view){
-        // call to add workout
-    }
+        Log.d(TAG, "add workout pressed");
 
+    }
+    // call to remove workout
     public void removeWorkout(View view){
-        // call to remove workout
+        Log.d(TAG, "remove workout pressed");
+        /// reminder that this class's element workoutIDSelected contains the _ID from the database to delete!!
+        if (details != null && details.isVisible()){ // if there was a details fragment in the frame an item was selected
+            new AlertDialog.Builder(this)
+                    .setTitle("Confirm Delete")
+                    .setMessage("Are you sure you want to delete:\n" + "")
+                    .setPositiveButton("yes", new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int which){
+                            Log.d(TAG, "yes button selected");
+                            MainActivity.dBhandler.deleteWorkout(workoutIDSelected); // delete the selection from the database
+                            WorkoutData.workouts.remove(workoutPosition); // delete the selection from the workoutlist
+                            /// finish and restart activity to refresh screen
+                            finish();
+                            startActivity(getIntent());
+                        }
+                    }).setNegativeButton("no", new DialogInterface.OnClickListener(){
+                        public void onClick(DialogInterface dialog, int which){
+                            Log.d(TAG, "cancel hit");
+                        }
+            }).show();
+        }
+        else {
+            Toast toast = Toast.makeText(this, "Please Select a Workout to delete", Toast.LENGTH_SHORT);
+            toast.show();
+        }
+    }
+    // call to schedule workout
+    public void scheduleWorkout(View view){
+        Log.d(TAG, "schedule workout pressed");
     }
 
     @Override
     public void itemClicked(long id) {
-        workoutId = id; // set global ID so that button clicks have access... @TODO make this the workout id not the position in the list
-        WorkoutDetailFragment details = new WorkoutDetailFragment();
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        details = new WorkoutDetailFragment();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
         details.setWorkout(id);
         ft.replace(R.id.fragment_container, details);
         ft.addToBackStack(null);

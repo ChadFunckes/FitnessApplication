@@ -50,6 +50,8 @@ public class WorkoutData {
         return name;
     }
 
+    public int getID(){ return ID; }
+
     public String toString() {
         return this.name;
     }
