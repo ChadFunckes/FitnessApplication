@@ -2,14 +2,12 @@ package ismgapps.fitnessapplication;
 
 import android.content.ContentValues;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
+
 
 public class AddWorkoutActivity extends AppCompatActivity {
     private EditText nameInput, descInput, calInput;
@@ -26,20 +24,21 @@ public class AddWorkoutActivity extends AppCompatActivity {
         nameInput = (EditText) findViewById(R.id.workoutNameEditText);
         descInput = (EditText) findViewById(R.id.workOutEditText);
         calInput = (EditText) findViewById(R.id.calAmountEditText);
-        // radio button selections
+        //radio button selections
         totalCal = (RadioButton) findViewById(R.id.totalCalorieSelected);
         perPoundCal = (RadioButton) findViewById(R.id.perPoundSelected);
     }
     // do this when the workout button is clicked
+
     public void addWorkoutClicked(View view){
         ContentValues values = new ContentValues();
         values.put("Name", nameInput.getText().toString());
         values.put("Description", descInput.getText().toString());
         values.put("CAL_COUNT", Float.valueOf(calInput.getText().toString()));
         if (totalCal.isChecked()){
-            values.put("IS_MULTIPLIER", 0);
+           values.put("IS_MULTIPLIER", 0);
         }else {
-            values.put("IS_MULTIPLIER", 1);
+           values.put("IS_MULTIPLIER", 1);
         }
         int idInserted = MainActivity.dBhandler.insertWorkout(values); // put the data in the database, return the ID that was used
         WorkoutData thisData = new WorkoutData(idInserted, nameInput.getText().toString(),

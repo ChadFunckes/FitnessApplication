@@ -44,7 +44,15 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
+              <activity
+                   android:name=".AddWorkoutActivity"
+                   android:label="@string/title_activity_add_workout"
+                   android:parentActivityName=".WorkoutActivity"
+                   android:theme="@style/AppTheme.NoActionBar">
+                  <meta-data
+                       android:name="android.support.PARENT_ACTIVITY"
+                       android:value="ismgapps.fitnessapplication.WorkoutActivity" />
+              </activity>
 
     </application>
 

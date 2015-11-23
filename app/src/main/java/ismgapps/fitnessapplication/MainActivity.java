@@ -69,8 +69,8 @@ public class MainActivity extends AppCompatActivity
         dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
         user = new User(sharedPreferences); // build user based on stored preferences
-        //user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
-        user.logOut();
+        user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
+        //user.logOut();
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
