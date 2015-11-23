@@ -51,7 +51,8 @@
         android:layout_alignEnd="@+id/workoutNameEditText"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:maxLines="10"
-        android:maxLength="255" />
+        android:maxLength="255"
+        android:hint="100 push-ups\n50 sit-ups\netc..." />
 
     <TextView
         android:layout_width="wrap_content"
@@ -99,12 +100,13 @@
         android:layout_height="40dp"
         android:inputType="numberDecimal"
         android:ems="10"
-        android:id="@+id/editText3"
+        android:id="@+id/calAmountEditText"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:singleLine="true"
         android:layout_below="@+id/calorieEnterText"
         android:layout_alignEnd="@+id/calorieEnterText"
-        android:maxLength="5" />
+        android:maxLength="5"
+        android:hint="0.0" />
 
     <Button
         android:layout_width="wrap_content"
@@ -112,8 +114,9 @@
         android:text="Add Workout"
         android:id="@+id/addWorkoutButton"
         android:layout_marginTop="45dp"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentStart="true" />
+        android:layout_below="@+id/calAmountEditText"
+        android:layout_alignParentStart="true"
+        android:onClick="addWorkoutClicked" />
 
 
 </RelativeLayout>

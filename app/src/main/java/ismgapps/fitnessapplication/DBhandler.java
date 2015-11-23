@@ -2,6 +2,7 @@ package ismgapps.fitnessapplication;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -150,7 +151,14 @@ public class DBhandler extends SQLiteOpenHelper{
         Log.d(TAG, "workout with id " + id + "selected for deletion");
         return db.delete(TABLE_WORKOUTS, "_ID" + "=" + id, null) > 0;
     }
-
+    // insert a workout into the DB, returns the ID of the item inserted
+    public int insertWorkout(ContentValues values){
+        db.insert(TABLE_WORKOUTS, null, values);
+        String CMD = "SELECT * FROM " + TABLE_WORKOUTS + " WHERE Name ='" + values.get("Name") + "';";
+        Cursor c = db.rawQuery(CMD, null);
+        c.moveToFirst();
+        return c.getInt(0);
+    }
 
     // this will delete entire database
     public void destroyDB(){

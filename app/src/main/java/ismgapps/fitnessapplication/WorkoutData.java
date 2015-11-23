@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class WorkoutData {
@@ -14,7 +15,7 @@ public class WorkoutData {
     private int multiplier;
 
     public static List<WorkoutData> workouts = getWorkouts();
-
+    // build initial list from SQL
     private static List<WorkoutData> getWorkouts(){
         final SQLiteDatabase db = MainActivity.dbWrite;
         List<WorkoutData> theList = new ArrayList<WorkoutData>();
@@ -33,15 +34,14 @@ public class WorkoutData {
         Log.d("Workout Data Class", "List Filled");
         return theList;
     }
-
-    private WorkoutData(int id, String name, String description, float cal_count, int multiplier) {
+    // constructor to build object where an ID is already known (ie. from database)
+    public WorkoutData(int id, String name, String description, float cal_count, int multiplier) {
         this.ID = id;
         this.name = name;
         this.description = description;
         this.cal_count = cal_count;
         this.multiplier = multiplier;
     }
-
     public String getDescription() {
         return description;
     }

@@ -35,7 +35,14 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
     public void addWorkout(View view){
         Log.d(TAG, "add workout pressed");
         Intent intent = new Intent(this, AddWorkoutActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+        Log.d(TAG, "FINISH");
+    }
+    // result used to stop and refresh the WorkoutActivity
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data){
+        finish();
+        startActivity(getIntent());
     }
     // call to remove workout
     public void removeWorkout(View view){
