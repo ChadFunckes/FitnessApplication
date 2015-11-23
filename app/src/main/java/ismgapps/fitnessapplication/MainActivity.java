@@ -27,17 +27,18 @@ public class MainActivity extends AppCompatActivity
 
     private final String TAG = "MainActivity"; // use this tag for log actions
     public SharedPreferences sharedPreferences; // get access to the shared preferences
-
-    static User user; // create the logged in user object
+    // create the logged in user object
+    static User user;
     // set up fragments
     public MyFitness fitnessFrag;
     public Today todayFrag;
+    //public Workouts workoutFrag;
     public Recipies recipieFrag;
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
     // get database handeling objects
     static SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
-    static DBhandler dBhandler; // database helper object
+    private DBhandler dBhandler; // database helper object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,19 +64,17 @@ public class MainActivity extends AppCompatActivity
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);
-        dBhandler.destroyDB(); // @todo MAKES DB CLEAN FOR TESTING, DELETE AFTER TESTING PHASE
         // get writable database access
         dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
         user = new User(sharedPreferences); // build user based on stored preferences
         user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
         //user.logOut();
-
         // check if the user is logged in...if name is null then no user is loggedIn
-        if (sharedPreferences.getString("name", null) == null) {
-            Log.d(TAG, "no user data exists in shared prefs");
+        if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
             startActivity(intent);
+            Log.d(TAG, "no user data exists in shared prefs");
         }
         else{ // fill user from saved preferences ...
             user.fillUserFromPrefs();
@@ -119,10 +118,13 @@ public class MainActivity extends AppCompatActivity
             Log.i("xx", "settings button selected");
             return true;
         }
+<<<<<<< HEAD
         else if (id == R.id.logout){
             user.logOut();
             return true;
         }
+=======
+>>>>>>> a1e7f159d6bc600cc66c29c30dc6ee51b8f8fc81
 
         return super.onOptionsItemSelected(item);
     }
