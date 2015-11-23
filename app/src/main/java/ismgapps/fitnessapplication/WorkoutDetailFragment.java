@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 
 public class WorkoutDetailFragment extends Fragment {
-    private int workoutId;
+    private int workoutId; // workouts position as selected
 
     public WorkoutDetailFragment() {
         // Required empty public constructor
@@ -39,6 +39,8 @@ public class WorkoutDetailFragment extends Fragment {
             title.setText(workout.getName());
             TextView description = (TextView) view.findViewById(R.id.textDescription);
             description.setText(workout.getDescription());
+            WorkoutActivity.workoutIDSelected = WorkoutData.workouts.get(workoutId).getID(); // set workout activity so it knows the database specific ID
+            WorkoutActivity.workoutPosition = workoutId;
         }
     }
 

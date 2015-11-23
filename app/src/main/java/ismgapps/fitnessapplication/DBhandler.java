@@ -9,6 +9,8 @@ import android.util.Log;
 
 public class DBhandler extends SQLiteOpenHelper{
     private final String TAG = "SQL DBhelper Class"; // debug tag
+    private SQLiteDatabase db;
+    private Context dbContext;  // universal context item
 
     private static final int DATABASE_VERSION = 1;          //db version number
     private static final String DATABASE_NAME = "fitness";  // name for database
@@ -17,8 +19,6 @@ public class DBhandler extends SQLiteOpenHelper{
     private static final String TABLE_WORKOUTS = "Workouts";// name for table to hold workout details
     private static final String TABLE_FITNESS_RECORD = "Record";// table to keep track of daily workouts record
 
-    private Context dbContext;  // universal context item
-
     public DBhandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.dbContext = context;
@@ -26,11 +26,12 @@ public class DBhandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        createUserTable(db); // make the users table
-        createTestPerson(db); // make test person
+        this.db = db;
+        createUserTable(); // make the users table
+        createTestPerson(); // make test person
         // @TODO make the recipie table
-        createWorkoutTable(db);
-        fillWorkoutTable(db);
+        createWorkoutTable();
+        fillWorkoutTable();
         // @TODO make the records table
     }
 
@@ -40,7 +41,7 @@ public class DBhandler extends SQLiteOpenHelper{
     }
 
     // this will create the users table, method to be used in onCreate
-    private void createUserTable(SQLiteDatabase db){
+    private void createUserTable(){
         Log.d(TAG, "Creating user table...");
         String CMD = "CREATE TABLE IF NOT EXISTS "+ TABLE_USER +
                 " ( _ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -59,7 +60,7 @@ public class DBhandler extends SQLiteOpenHelper{
         db.execSQL(CMD);
     }
     // this will create a dummy person for use
-    private void createTestPerson(SQLiteDatabase db){
+    private void createTestPerson(){
         Log.d(TAG, "Creating Test Person");
         // to create a record, create a values object, put in the values paid and insert(TABLE, null, values)
         ContentValues values = new ContentValues();
@@ -95,9 +96,11 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put("Cur_Level", user.getCur_lvl());
         values.put("Email", user.getEmail());
         values.put("Phone", user.getPhone());
+
+        MainActivity.dbWrite.insert(TABLE_USER, null, values);
     }
     // this will create the workout table
-    private void createWorkoutTable(SQLiteDatabase db){
+    private void createWorkoutTable(){
         Log.d(TAG, "Creating Workout Table");
         String CMD = "CREATE TABLE IF NOT EXISTS " + TABLE_WORKOUTS +
                 " (_ID INTEGER PRIMARY KEY AUTOINCREMENT, "+
@@ -108,7 +111,7 @@ public class DBhandler extends SQLiteOpenHelper{
         db.execSQL(CMD);
     }
     // fill the workout table with basic data
-    private void fillWorkoutTable(SQLiteDatabase db){
+    private void fillWorkoutTable(){
         Log.d(TAG, "Filling basic workouts table");
         String name = "Name"; String desc = "Description";
         String count = "CAL_COUNT"; String mult = "IS_MULTIPLIER";
@@ -142,6 +145,12 @@ public class DBhandler extends SQLiteOpenHelper{
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
     }
+    // delete a workout by ID
+    public boolean deleteWorkout(int id){
+        Log.d(TAG, "workout with id " + id + "selected for deletion");
+        return db.delete(TABLE_WORKOUTS, "_ID" + "=" + id, null) > 0;
+    }
+
 
     // this will delete entire database
     public void destroyDB(){

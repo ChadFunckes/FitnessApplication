@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity
     FragmentManager fragmentManager = getFragmentManager();
     // get database handeling objects
     static SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
-    private DBhandler dBhandler; // database helper object
+    static DBhandler dBhandler; // database helper object
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);
+        dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
         // get writable database access
         dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
@@ -114,9 +115,12 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             Log.i("xx", "settings button selected");
+            return true;
+        }
+        else if (id == R.id.logout){
+            user.logOut();
             return true;
         }
 
