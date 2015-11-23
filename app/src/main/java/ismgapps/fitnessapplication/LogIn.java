@@ -17,12 +17,12 @@ public class LogIn extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
 
-       Intent intent = getIntent();
+       //Intent intent = getIntent();
 
         // this is a test yadda ydaa dadda
     }
     public void Register (View view){
-        Intent i = new Intent(this, Register.class);
+        Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
     }
 }
