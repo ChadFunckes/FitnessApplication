@@ -10,17 +10,6 @@
     tools:showIn="@layout/activity_register" tools:context="ismgapps.fitnessapplication.Register"
     android:background="#191010">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editTextUsername"
-        android:textColor="#525050"
-        android:layout_below="@+id/Username"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,11 +25,54 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="AGE:"
+        android:id="@+id/age"
+        android:layout_toRightOf="@+id/editTextUsername"
+        android:textStyle="bold|italic"
+        android:textColor="#525050"
+        android:layout_marginLeft="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextUsername"
+        android:textColor="#525050"
+        android:layout_below="@+id/Username"
+        android:layout_alignParentStart="true"
+        android:background="#aba8a8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Password"
+        android:id="@+id/password"
+        android:layout_below="@+id/editTextUsername"
+        android:textStyle="bold|italic"
+        android:textColor="#525050" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editTextPassword"
+        android:textColor="#525050"
+        android:layout_below="@+id/password"
+        android:layout_alignParentStart="true"
+        android:background="#aba8a8" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Email:"
         android:id="@+id/email"
         android:textStyle="bold|italic"
         android:textColor="#525050"
-        android:layout_below="@+id/editTextUsername"
+        android:layout_below="@+id/editTextPassword"
         android:layout_alignParentStart="true" />
 
     <EditText
@@ -88,7 +120,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editTextWight"
         android:layout_below="@+id/Weight"
@@ -109,12 +141,13 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:ems="10"
         android:id="@+id/editTextHeight"
         android:background="#aba8a8"
         android:layout_below="@+id/Height"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:focusableInTouchMode="true" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -127,23 +160,68 @@
         android:layout_below="@+id/editTextHeight"
         android:layout_alignParentStart="true" />
 
-    <EditText
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="number"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:ems="10"
-        android:id="@+id/editTextBMI"
-        android:background="#aba8a8"
+        android:id="@+id/textBMI"
         android:layout_below="@+id/BMI"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:text="0.0"
+        android:textColor="#aba8a8"
+        android:layout_alignEnd="@+id/Height"
+        android:maxLength="5" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
         android:id="@+id/Register"
-        android:layout_below="@+id/editTextBMI"
+        android:layout_below="@+id/textBMI"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp" />
+        android:onClick="register"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/textAge"
+        android:textColor="#525050"
+        android:background="#aba8a8"
+        android:layout_below="@+id/age"
+        android:layout_alignStart="@+id/age"
+        android:inputType="number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="BMR:"
+        android:id="@+id/BMR"
+        android:textStyle="bold|italic"
+        android:textColor="#525050"
+        android:layout_below="@+id/editTextHeight"
+        android:layout_toEndOf="@+id/Weight" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:ems="10"
+        android:id="@+id/textBMR"
+        android:text="0.0"
+        android:textColor="#aba8a8"
+        android:layout_below="@+id/BMR"
+        android:layout_toEndOf="@+id/Weight" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calculate "
+        android:id="@+id/CalcButton"
+        android:layout_below="@+id/textBMI"
+        android:layout_alignParentStart="true"
+        android:onClick="calculate"/>
 
 </RelativeLayout>

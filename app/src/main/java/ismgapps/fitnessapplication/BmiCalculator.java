@@ -18,14 +18,6 @@ public class BmiCalculator extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 
     public void BmiCalculate (View view){
@@ -52,13 +44,13 @@ public class BmiCalculator extends AppCompatActivity {
     }
 
     // check for http://en.wikipedia.org/wiki/Body_mass_index
-    private float BMI (float weight, float height) {
-
+    static float BMI (float weight, float height) {
         return (float) (weight * 4.88 / (height * height));
     }
-
-
-
+    //  BMR = 66 + ( 6.23 x weight in pounds ) + ( 12.7 x height in inches ) - ( 6.8 x age in year )
+    static float BMR (float weight, float height, float age){
+        return (float) (66 + (6.23 * weight) + (12.7 * height) - ( 6.8 * age));
+    }
 
     private String interpretBMI(float bmiResult) {
 

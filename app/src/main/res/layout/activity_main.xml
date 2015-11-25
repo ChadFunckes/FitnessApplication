@@ -39,9 +39,8 @@
             <!-- This is the main frame section to change all the parts in!-->
             <FrameLayout
                 android:id="@+id/mainFrame"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"></FrameLayout>
-
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
 
         </RelativeLayout>
 

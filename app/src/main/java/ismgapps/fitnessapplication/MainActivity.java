@@ -60,7 +60,6 @@ public class MainActivity extends AppCompatActivity
         //make fragments
         fitnessFrag = new MyFitness();
         todayFrag = new Today();
-        //workoutFrag = new Workouts();
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);

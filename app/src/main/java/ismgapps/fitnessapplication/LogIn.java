@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 
 public class LogIn extends AppCompatActivity {
@@ -28,6 +29,7 @@ public class LogIn extends AppCompatActivity {
     public void Register (View view){
         Intent i = new Intent(this, RegisterActivity.class);
         startActivity(i);
+        finish();
     }
 
     public void Login (View view){
@@ -41,11 +43,15 @@ public class LogIn extends AppCompatActivity {
                 break;
             case (1):
                 Log.d(TAG, "User Name was not found");
+                Toast toast = Toast.makeText(this, "User Name was not found", Toast.LENGTH_SHORT);
+                toast.show();
                 nameBad.setVisibility(View.VISIBLE);
                 passBad.setVisibility(View.VISIBLE);
                 break;
             case (2):
                 Log.d(TAG, "Password was not found");
+                toast = Toast.makeText(this, "Password is incorrect", Toast.LENGTH_SHORT);
+                toast.show();
                 nameBad.setVisibility(View.INVISIBLE);
                 nameGood.setVisibility(View.VISIBLE);
                 break;
