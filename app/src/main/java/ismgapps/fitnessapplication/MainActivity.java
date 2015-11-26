@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         // Instantiate the User
         if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
 
-        //user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
+        user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
         //user.logOut();
 
         // check if the user is logged in...if name is null then no user is loggedIn
@@ -178,4 +178,13 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onFragmentInteraction(int test) {
+        Log.d(TAG, "frgment interaction success");
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        todayFrag = null;
+        todayFrag = new Today();
+        ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
+        fragmentManager.executePendingTransactions();
+    }
 }

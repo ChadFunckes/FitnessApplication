@@ -7,10 +7,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import java.util.Date;
 
 public class DBhandler extends SQLiteOpenHelper{
-    private final String TAG = "SQL DBhelper Class"; // debug tag
-    private SQLiteDatabase db;
+    private final static String TAG = "SQL DBhelper Class"; // debug tag
+    private static SQLiteDatabase db;
     private Context dbContext;  // universal context item
 
     private static final int DATABASE_VERSION = 1;          //db version number
@@ -29,10 +30,10 @@ public class DBhandler extends SQLiteOpenHelper{
         this.db = db;
         createUserTable(); // make the users table
         createTestPerson(); // make test person
-        // @TODO make the recipie table
-        createWorkoutTable();
-        fillWorkoutTable();
-        // @TODO make the records table
+        createWorkoutTable(); // make workout table
+        fillWorkoutTable(); // fill workouts table
+        createRecordsTable(); // make workout records table
+        fillDates(); // fill test users workout data
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -100,10 +101,9 @@ public class DBhandler extends SQLiteOpenHelper{
 
         MainActivity.dbWrite.insert(TABLE_USER, null, values);
     }
-    // check login information
+    // check login information (Returns 1 if name was incorrect, 2 if password was incorrect, 0 if mission success
     public int checkUserLogin(String name, String password){
         Log.d(TAG, "Check user login operation hit with name " + name + " and password " + password);
-        // return 1 if name was incorrect, 2 if password is incorrect and 0 if successful
         String CMD = "SELECT * FROM " + TABLE_USER + " WHERE Name ='" + name + "';";
         Cursor c = db.rawQuery(CMD, null);
         if (c.getCount() < 1){ return 1; }// name was not found
@@ -111,8 +111,7 @@ public class DBhandler extends SQLiteOpenHelper{
             c.moveToFirst(); // put cursor back
             if (!c.getString(2).equals(password)){ return 2; } // password was not found
         }
-        // user name and password found!!
-        // build up current user
+        // user name and password found!! .. build up current user
         MainActivity.user.setName(c.getString(1));
         MainActivity.user.setPassword(c.getString(2));
         MainActivity.user.setWeight(c.getFloat(3));
@@ -130,7 +129,6 @@ public class DBhandler extends SQLiteOpenHelper{
         MainActivity.user.commitUserToPrefs();
         return 0;
     }
-
     // this will create the workout table
     private void createWorkoutTable(){
         Log.d(TAG, "Creating Workout Table");
@@ -189,6 +187,50 @@ public class DBhandler extends SQLiteOpenHelper{
         Cursor c = db.rawQuery(CMD, null);
         c.moveToFirst();
         return c.getInt(0);
+    }
+    private void createRecordsTable(){
+        Log.d(TAG, "Creating Records table");
+        String CMD = "CREATE TABLE IF NOT EXISTS " + TABLE_FITNESS_RECORD +
+                " (Date TEXT NOT NULL, " +
+                "Workout_ID INT NOT NULL, " +
+                "Name TEXT NOT NULL, " +
+                "Calories INT NOT NULL, " +
+                "IS_MULTIPLIER INT NOT NULL);";
+        db.execSQL(CMD);
+        //CMD = "ALTER TABLE " + TABLE_FITNESS_RECORD + " ADD PRIMARY KEY (Date, Workout_ID);";
+        //db.rawQuery(CMD);
+    }
+    private void fillDates(){
+        Log.d(TAG, "filling dates");
+        ContentValues values = new ContentValues();
+
+        values.put("Date", "11/26/15");
+        values.put("Workout_ID", 2);
+        values.put("Name", "Test");
+        values.put("Calories", 200);
+        values.put("IS_MULTIPLIER", 0);
+        db.insert(TABLE_FITNESS_RECORD, null, values);
+    }
+    //returns an array of integers that correspond to workout_ID's scheduled today
+    public static int[] returnTodaysRecords(String date){
+        Log.d(TAG, "Return items from date " + date);
+        int[] theList;
+        String CMD = "SELECT * FROM " + TABLE_FITNESS_RECORD + " WHERE Date ='" + date + "';";
+        Cursor c = db.rawQuery(CMD, null);
+        if (c.getCount() <= 0){
+            return null;
+        }
+        c.moveToFirst();
+        theList = new int[c.getCount()];
+        for (int i = 0; !c.isAfterLast(); i++){
+            theList[i] = c.getInt(1);
+            c.moveToNext();
+        }
+        return theList;
+    }
+    public static void deleteFromToday(String date, int ID){
+        Log.d(TAG, "date passed " + date + "ID passed " + ID);
+        db.delete(TABLE_FITNESS_RECORD, "Workout_ID=" + ID + " AND Date='" + date + "'", null);
     }
 
     // this will delete entire database

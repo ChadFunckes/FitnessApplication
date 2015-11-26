@@ -52,6 +52,14 @@ public class WorkoutData {
 
     public int getID(){ return ID; }
 
+    public float getCal_count() {
+        return cal_count;
+    }
+
+    public int getMultiplier() {
+        return multiplier;
+    }
+
     public String toString() {
         return this.name;
     }
