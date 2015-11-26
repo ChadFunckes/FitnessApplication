@@ -119,11 +119,7 @@ public class MainActivity extends AppCompatActivity
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            Log.i("xx", "settings button selected");
-            return true;
-        }
-        else if (id == R.id.logout){
+        if (id == R.id.logout){
             user.logOut(); // logout from shared prefs
             restartMain(); // restart to show change
             return true;

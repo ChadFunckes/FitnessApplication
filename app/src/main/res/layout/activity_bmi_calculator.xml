@@ -57,7 +57,8 @@
             android:background="#aba8a8"
             android:layout_below="@+id/textView3"
             android:layout_alignParentStart="true"
-            android:layout_alignEnd="@+id/textView3" />
+            android:layout_alignEnd="@+id/textView3"
+            android:inputType="numberDecimal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -78,7 +79,8 @@
             android:layout_below="@+id/textView4"
             android:layout_alignEnd="@+id/textView4"
             android:layout_alignParentStart="true"
-            android:background="#aba8a8" />
+            android:background="#aba8a8"
+            android:inputType="numberDecimal" />
 
         <Button
             android:layout_width="wrap_content"
