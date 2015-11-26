@@ -9,7 +9,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-
 public class LogIn extends AppCompatActivity {
     private static final String TAG = "Login Activity";
     //private User user = MainActivity.user;

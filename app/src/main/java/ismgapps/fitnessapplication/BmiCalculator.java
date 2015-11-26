@@ -28,18 +28,19 @@ public class BmiCalculator extends AppCompatActivity {
             EditText H = (EditText)findViewById(R.id.hight);
             TextView r = (TextView)findViewById(R.id.Result);
 
+            try {
+                // get a user input
+                float UserHeight = Float.parseFloat(H.getText().toString());
+                float UserWeight = Float.parseFloat(W.getText().toString());
+                float bmiValue = BMI(UserWeight, UserHeight);
 
-            // get a user input
-            float UserHeight = Float.parseFloat(H.getText().toString());
-            float UserWeight = Float.parseFloat(W.getText().toString());
-            float bmiValue = BMI(UserWeight, UserHeight);
+                // interpret the meaning of the bmi value
+                String bmiInterpretation = interpretBMI(bmiValue);
 
-            // interpret the meaning of the bmi value
-            String bmiInterpretation = interpretBMI(bmiValue);
+                // show the result
 
-            // show the result
-
-            r.setText(bmiValue + "   " + bmiInterpretation);
+                r.setText(bmiValue + "   " + bmiInterpretation);
+            } catch (Exception e){}
         }
     }
 

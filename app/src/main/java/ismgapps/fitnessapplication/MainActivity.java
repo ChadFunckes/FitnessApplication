@@ -32,7 +32,6 @@ public class MainActivity extends AppCompatActivity
     // set up fragments
     public MyFitness fitnessFrag;
     public Today todayFrag;
-    //public Workouts workoutFrag;
     public Recipies recipieFrag;
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
@@ -68,8 +67,10 @@ public class MainActivity extends AppCompatActivity
         dbWrite = dBhandler.getWritableDatabase();
         // Instantiate the User
         if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
+
         //user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
         //user.logOut();
+
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
@@ -82,7 +83,6 @@ public class MainActivity extends AppCompatActivity
         }
 
         Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
-
     }
 
     public void openLogin(View view){ // starts a login instance....
@@ -132,7 +132,6 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    //@SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
