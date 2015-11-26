@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity
 
     private final String TAG = "MainActivity"; // use this tag for log actions
     public SharedPreferences sharedPreferences; // get access to the shared preferences
+    public static Context mContext; // universal context item.
     // create the logged in user object
     static User user;
     // set up fragments
@@ -42,6 +43,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mContext = this;
         // set up the view and toolbars
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -85,7 +87,7 @@ public class MainActivity extends AppCompatActivity
         Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
     }
 
-    public void openLogin(View view){ // starts a login instance....
+    public void openLogin(View view){ // starts a login instance.... @TODO is this needed??
         Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }

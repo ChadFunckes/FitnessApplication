@@ -17,7 +17,8 @@ public class BmiCalculator extends AppCompatActivity {
         setContentView(R.layout.activity_bmi_calculator);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        // set back button operation
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public void BmiCalculate (View view){
