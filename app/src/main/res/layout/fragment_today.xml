@@ -53,7 +53,8 @@
         android:layout_toEndOf="@+id/weight"
         android:layout_alignBottom="@+id/weight"
         android:textSize="8sp"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:onClick="changeWeight"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -69,7 +70,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="000.00"
-        android:id="@+id/textView7"
+        android:id="@+id/DailyCaloriesText"
         android:layout_marginLeft="10dp"
         android:layout_below="@+id/weight"
         android:layout_toEndOf="@+id/textDailyCalories" />
@@ -116,7 +117,7 @@
         android:text="00000"
         android:id="@+id/calorieDisplay"
         android:layout_alignTop="@+id/textSchedCalories"
-        android:layout_toEndOf="@+id/textView7" />
+        android:layout_toEndOf="@+id/DailyCaloriesText" />
 
     <TextView
         android:layout_width="wrap_content"

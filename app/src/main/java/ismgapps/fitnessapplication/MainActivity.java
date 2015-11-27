@@ -1,8 +1,10 @@
 package ismgapps.fitnessapplication;
 
+import android.app.AlertDialog;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
@@ -15,10 +17,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.InputType;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.NumberFormat;
 
 // @TODO clean up interaction listeners....
 public class MainActivity extends AppCompatActivity
@@ -36,9 +45,8 @@ public class MainActivity extends AppCompatActivity
     public Recipies recipieFrag;
     // fragment manager to switch fragments in main activity
     FragmentManager fragmentManager = getFragmentManager();
-    // get database handeling objects
-    static SQLiteDatabase dbWrite = null; // reference to a writable database object, set in onCreate.
-    static DBhandler dBhandler; // database helper object
+    // get database handling objects
+    static DBhandler dBhandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,14 +72,9 @@ public class MainActivity extends AppCompatActivity
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);
-        dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
-        // get writable database access
-        dbWrite = dBhandler.getWritableDatabase();
+        //dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
         // Instantiate the User
         if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
-
-        user.buildDummy(dbWrite); // @TODO build dummy gets a fake user from the database...delete this after login section is working
-        //user.logOut();
 
         // check if the user is logged in...if name is null then no user is loggedIn
         if (sharedPreferences.getString("name", null) == null){
@@ -82,14 +85,12 @@ public class MainActivity extends AppCompatActivity
         else{ // fill user from saved preferences ...
             user.fillUserFromPrefs();
             Log.d(TAG, "user data filled from preferences");
+            // show today on startup
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
+            fragmentManager.executePendingTransactions();
         }
-
         Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
-    }
-
-    public void openLogin(View view){ // starts a login instance.... @TODO is this needed??
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
     }
     // force a restart of the mainActivity (like for a logout, etc.)
     public void restartMain(){
@@ -126,7 +127,6 @@ public class MainActivity extends AppCompatActivity
             restartMain(); // restart to show change
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
@@ -176,6 +176,53 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+    // method handles the press of change weight button in today fragment
+    public void changeWeight(View view){
+        Log.d(TAG, "change weight button hit from Today Fragment");
+        final EditText weightInput = new EditText(this);
+        weightInput.setInputType(InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Change Current Weight");
+        builder.setView(weightInput);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                try { // try catch will cause dialog to bail if the input is not a valid float number
+                    float weight = Float.valueOf(weightInput.getText().toString());
+                    final String input = weightInput.getText().toString();
+                    TextView weightText;
+                    weightText = (TextView) findViewById(R.id.weight);
+                    weightText.setText(input);
+                    // @TODO change weight in user, sharedPrefs and database
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    final float BMI = BmiCalculator.BMI(weight, MainActivity.user.getHeight());
+                    double age = (66 + (6.23 * MainActivity.user.getCur_weight()) + (12.7 * MainActivity.user.getHeight() - MainActivity.user.getCal_needs()))/6.8;
+                    final float BMR = BmiCalculator.BMR(weight, MainActivity.user.getHeight(),(float) age);
+                    user.setCur_weight(weight); // set main user current weight
+                    user.setBMI(BMI);
+                    user.setBMR(BMR);
+                    user.setCal_needs(BMR);
+                    editor.putFloat("Current_Weight", weight);
+                    editor.putFloat("BMI", BMI);
+                    editor.putFloat("BMR", BMR);
+                    editor.putFloat("Cal_Needs", BMR);
+                    editor.commit();
+                    dBhandler.updateUserWeight(user.getName(), weight, BMI, BMR);
+                    onFragmentInteraction(1); // call to restart fragment ;)
+                } catch (Exception e) { // exception will toast the error to the user
+                    Toast.makeText(MainActivity.mContext, "Input must be a number...", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
     }
 
     @Override

@@ -9,8 +9,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -74,6 +72,10 @@ public class WorkoutActivity extends AppCompatActivity implements WorkoutListFra
     // call to schedule workout
     public void scheduleWorkout(View view){
         Log.d(TAG, "schedule workout pressed");
+        if (details != null && details.isVisible()) {
+            MainActivity.dBhandler.addWorkoutToToday(workoutIDSelected); // add workout with the ID selected
+        }
+        else Toast.makeText(this, "Please Select and item to schedule", Toast.LENGTH_LONG).show();
     }
 
     @Override

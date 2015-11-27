@@ -5,13 +5,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.text.format.DateFormat;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Date;
 
 public class DBhandler extends SQLiteOpenHelper{
     private final static String TAG = "SQL DBhelper Class"; // debug tag
-    private static SQLiteDatabase db;
+    public static SQLiteDatabase db;
     private Context dbContext;  // universal context item
 
     private static final int DATABASE_VERSION = 1;          //db version number
@@ -24,6 +26,7 @@ public class DBhandler extends SQLiteOpenHelper{
     public DBhandler(Context context){
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.dbContext = context;
+        this.db = this.getWritableDatabase();
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -99,7 +102,7 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put("Email", user.getEmail());
         values.put("Phone", user.getPhone());
 
-        MainActivity.dbWrite.insert(TABLE_USER, null, values);
+        db.insert(TABLE_USER, null, values);
     }
     // check login information (Returns 1 if name was incorrect, 2 if password was incorrect, 0 if mission success
     public int checkUserLogin(String name, String password){
@@ -128,6 +131,15 @@ public class DBhandler extends SQLiteOpenHelper{
         // put the user info into userPrefs (loggedIN info)
         MainActivity.user.commitUserToPrefs();
         return 0;
+    }
+    // update a users weight, inputs are username and new weight
+    public void updateUserWeight(String name, float weight, float BMI, float BMR){
+        ContentValues values = new ContentValues();
+        values.put("Cur_Weight", weight);
+        values.put("BMI", BMI);
+        values.put("BMR", BMR);
+        values.put("Cal_Needs", BMR);
+        db.update(TABLE_USER, values, "Name = '" + name + "'", null);
     }
     // this will create the workout table
     private void createWorkoutTable(){
@@ -204,12 +216,34 @@ public class DBhandler extends SQLiteOpenHelper{
         Log.d(TAG, "filling dates");
         ContentValues values = new ContentValues();
 
-        values.put("Date", "11/26/15");
+        values.put("Date", "11/27/15");
         values.put("Workout_ID", 2);
         values.put("Name", "Test");
         values.put("Calories", 200);
         values.put("IS_MULTIPLIER", 0);
         db.insert(TABLE_FITNESS_RECORD, null, values);
+
+        values.put("Date", "11/27/15");
+        values.put("Workout_ID", 3);
+        values.put("Name", "Test");
+        values.put("Calories", 200);
+        values.put("IS_MULTIPLIER", 0);
+        db.insert(TABLE_FITNESS_RECORD, null, values);
+    }
+    public static void addWorkoutToToday(int id){
+        final String DateTime = DateFormat.getDateFormat(MainActivity.mContext).format(new Date());
+        ContentValues values = new ContentValues();
+        String CMD = "SELECT * FROM " + TABLE_WORKOUTS + " WHERE _ID = " + id + ";";
+        Cursor c = db.rawQuery(CMD, null);
+        c.moveToFirst();
+        values.put("Date", DateTime);
+        values.put("Workout_ID", c.getInt(0));
+        values.put("Name", c.getString(1));
+        values.put("Calories", c.getFloat(3));
+        values.put("IS_MULTIPLIER", c.getInt(4));
+        Log.d(TAG, "inserting name " + c.getString(1) + " id " + c.getInt(0) + " date " + DateTime);
+        db.insert(TABLE_FITNESS_RECORD, null, values);
+        Toast.makeText(MainActivity.mContext, c.getString(1) + " added to todays workout list", Toast.LENGTH_LONG).show();
     }
     //returns an array of integers that correspond to workout_ID's scheduled today
     public static int[] returnTodaysRecords(String date){

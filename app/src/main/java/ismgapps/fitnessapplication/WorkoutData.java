@@ -17,11 +17,10 @@ public class WorkoutData {
     public static List<WorkoutData> workouts = getWorkouts();
     // build initial list from SQL
     private static List<WorkoutData> getWorkouts(){
-        final SQLiteDatabase db = MainActivity.dbWrite;
         List<WorkoutData> theList = new ArrayList<WorkoutData>();
         WorkoutData temp;
         String query = "SELECT * FROM Workouts;";
-        Cursor c = db.rawQuery(query, null);
+        Cursor c = DBhandler.db.rawQuery(query, null);
         c.moveToFirst();
         Log.d("Workout Data Class", "Starting to fill list");
 
