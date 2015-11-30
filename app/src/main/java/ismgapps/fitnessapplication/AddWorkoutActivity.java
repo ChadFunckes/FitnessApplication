@@ -29,7 +29,6 @@ public class AddWorkoutActivity extends AppCompatActivity {
         perPoundCal = (RadioButton) findViewById(R.id.perPoundSelected);
     }
     // do this when the workout button is clicked
-
     public void addWorkoutClicked(View view){
         ContentValues values = new ContentValues();
         values.put("Name", nameInput.getText().toString());
@@ -46,5 +45,4 @@ public class AddWorkoutActivity extends AppCompatActivity {
         WorkoutData.workouts.add(thisData); // add to list
         finish();
     }
-
 }

@@ -37,7 +37,7 @@ public class User {
         this.phone = sharedPreferences.getString("Phone", null);
     }
 
-    //@TODO this is a sample to get through the database
+    // @TODO this is a sample to get through the database, safe to delete buildDummy method on production
     public void buildDummy(SQLiteDatabase db){
         // set query to execute
         String query = "SELECT * FROM Users;";

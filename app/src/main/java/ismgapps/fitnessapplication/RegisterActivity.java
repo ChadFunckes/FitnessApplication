@@ -148,5 +148,4 @@ public class RegisterActivity extends AppCompatActivity {
         MainActivity.user.commitUserToDB();
         finish();
     }
-
 }

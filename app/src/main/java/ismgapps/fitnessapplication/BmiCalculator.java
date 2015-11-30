@@ -70,8 +70,5 @@ public class BmiCalculator extends AppCompatActivity {
         } else {
             return "You are Obese";
         }
-
-
-
     }
 }

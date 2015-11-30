@@ -2,14 +2,11 @@ package ismgapps.fitnessapplication;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListFragment;
-import android.content.Context;
+import android.app.Fragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +17,10 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class Today extends Fragment {
 
@@ -74,15 +68,11 @@ public class Today extends Fragment {
                         works.wName = WorkoutData.workouts.get(x).getName();
                         works.wDescription = WorkoutData.workouts.get(x).getDescription();
                         works.wCalories = WorkoutData.workouts.get(x).getCal_count();
-                        Log.d("works object", "calories " + works.wCalories);
                         works.wMultiplier = WorkoutData.workouts.get(x).getMultiplier();
-                        Log.d("works object", "multiplier " + works.wMultiplier);
                         // if the calorie count is raw increase the daily calories by the calorie amount
                         if (works.wMultiplier == 0) calorieCounter = calorieCounter + works.wCalories;
                         // else if the there is a multiplier (per pound calories) multiply calorie number by the users current weight
                         else calorieCounter = calorieCounter + (works.wCalories * MainActivity.user.getCur_weight());
-                        Log.d("calorie counter ", "count " + calorieCounter);
-
                         items2.add(works);
                         works = null;
                     }
@@ -135,10 +125,8 @@ public class Today extends Fragment {
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), WorkoutActivity.class);
                 startActivity(intent);
-                // @TODO this may need to be start for result???
             }
         });
-
     }
     // class used as structure to keep workout data details from the list
     private class workoutDetail {
@@ -165,8 +153,6 @@ public class Today extends Fragment {
     }
 
     static interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         public void onFragmentInteraction(int test);
     }
-
 }

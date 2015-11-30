@@ -266,10 +266,8 @@ public class DBhandler extends SQLiteOpenHelper{
         Log.d(TAG, "date passed " + date + "ID passed " + ID);
         db.delete(TABLE_FITNESS_RECORD, "Workout_ID=" + ID + " AND Date='" + date + "'", null);
     }
-
     // this will delete entire database
     public void destroyDB(){
         dbContext.deleteDatabase(DATABASE_NAME);
     }
-
 }

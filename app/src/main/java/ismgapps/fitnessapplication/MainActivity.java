@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -22,14 +21,10 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.text.NumberFormat;
-
-// @TODO clean up interaction listeners....
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, MyFitness.OnFragmentInteractionListener,
         Today.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
@@ -63,7 +58,6 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        Context context = this;
         // get the sharedprefernces for use
         sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         //make fragments
@@ -75,8 +69,7 @@ public class MainActivity extends AppCompatActivity
         //dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
         // Instantiate the User
         if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
-
-        // check if the user is logged in...if name is null then no user is loggedIn
+        // check if the user is logged in...if name is null then no user is loggedIn, launch login activity
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
             startActivity(intent);
@@ -90,7 +83,7 @@ public class MainActivity extends AppCompatActivity
             ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
             fragmentManager.executePendingTransactions();
         }
-        Log.d(TAG, "name is: " + user.getName()); // if this line print a user name to the log, user data was loaded sucessfully
+        Log.d(TAG, "name is: " + user.getName()); // if this line prints a user name to the log, user data was loaded successfully
     }
     // force a restart of the mainActivity (like for a logout, etc.)
     public void restartMain(){
@@ -110,16 +103,12 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
         if (id == R.id.logout){
@@ -194,10 +183,10 @@ public class MainActivity extends AppCompatActivity
                     TextView weightText;
                     weightText = (TextView) findViewById(R.id.weight);
                     weightText.setText(input);
-                    // @TODO change weight in user, sharedPrefs and database
+                    // change weight in user, sharedPrefs and database
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     final float BMI = BmiCalculator.BMI(weight, MainActivity.user.getHeight());
-                    double age = (66 + (6.23 * MainActivity.user.getCur_weight()) + (12.7 * MainActivity.user.getHeight() - MainActivity.user.getCal_needs()))/6.8;
+                    final double age = (66 + (6.23 * MainActivity.user.getCur_weight()) + (12.7 * MainActivity.user.getHeight() - MainActivity.user.getCal_needs()))/6.8;
                     final float BMR = BmiCalculator.BMR(weight, MainActivity.user.getHeight(),(float) age);
                     user.setCur_weight(weight); // set main user current weight
                     user.setBMI(BMI);
