@@ -78,10 +78,17 @@ public class MainActivity extends AppCompatActivity
         else{ // fill user from saved preferences ...
             user.fillUserFromPrefs();
             Log.d(TAG, "user data filled from preferences");
-            // show today on startup
             FragmentTransaction ft = getFragmentManager().beginTransaction();
-            ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
-            fragmentManager.executePendingTransactions();
+            if (savedInstanceState != null && savedInstanceState.getString("fragVis") == "recipe"){
+                 ft.replace(R.id.mainFrame, recipieFrag).addToBackStack(null).commit();
+            }
+            else if (savedInstanceState !=null && savedInstanceState.getString("fragVis") == "fitness"){
+                ft.replace(R.id.mainFrame, fitnessFrag).addToBackStack(null).commit();
+            }
+            else {
+                ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
+                fragmentManager.executePendingTransactions();
+            }
         }
         Log.d(TAG, "name is: " + user.getName()); // if this line prints a user name to the log, user data was loaded successfully
     }
@@ -214,6 +221,18 @@ public class MainActivity extends AppCompatActivity
         builder.show();
     }
 
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        String fragVis;
+        if (recipieFrag.isVisible())
+            fragVis = "recipe";
+        else if (fitnessFrag.isVisible())
+            fragVis = "fitness";
+        else
+            fragVis = "today";
+        savedInstanceState.putString("fragVis", fragVis);
+        super.onSaveInstanceState(savedInstanceState);
+    }
     @Override
     public void onFragmentInteraction(int test) {
         Log.d(TAG, "frgment interaction success");

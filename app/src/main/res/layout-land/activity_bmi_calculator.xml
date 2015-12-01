@@ -26,7 +26,7 @@
         tools:showIn="@layout/activity_bmi_calculator"
         tools:context="ismgapps.fitnessapplication.BmiCalculator"
         android:background="#191010">
-
+        
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -44,11 +44,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Weight (lbs) :"
             android:id="@+id/textView3"
-            android:layout_marginTop="61dp"
-            android:layout_below="@+id/textView2"
-            android:layout_alignParentStart="true"
             android:textColor="#525050"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -66,11 +65,10 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Hight (feet) :"
             android:id="@+id/textView4"
-            android:layout_marginTop="59dp"
-            android:layout_below="@+id/wight"
-            android:layout_alignParentStart="true"
             android:textColor="#525050"
-            android:textStyle="bold|italic" />
+            android:textStyle="bold|italic"
+            android:layout_above="@+id/calculate"
+            android:layout_alignParentStart="true" />
 
         <EditText
             android:layout_width="wrap_content"
@@ -88,19 +86,18 @@
             android:text="Calculate"
             android:onClick="BmiCalculate"
             android:id="@+id/calculate"
-            android:layout_below="@+id/hight"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="47dp" />
+            android:layout_centerVertical="true"
+            android:layout_alignEnd="@+id/textView2" />
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:id="@+id/Result"
-            android:layout_below="@+id/calculate"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="49dp"
-            android:background="#aba8a8" />
+            android:layout_marginTop="29dp"
+            android:background="#aba8a8"
+            android:layout_below="@+id/hight"
+            android:layout_alignParentStart="true" />
 
     </RelativeLayout>
 

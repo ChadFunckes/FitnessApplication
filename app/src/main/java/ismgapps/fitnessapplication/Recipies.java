@@ -13,8 +13,15 @@ import android.widget.ImageView;
 public class Recipies extends Fragment {
     Button b1000,b1200,b1500,b1800;
     ImageView jpg1000,jpg1200,jpg1500,jpg1800;
+    int buttonPushed;  // keeps track of the button pushed for state change
 
     private OnFragmentInteractionListener mListener;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        if (savedInstanceState != null) buttonPushed = savedInstanceState.getInt("button");
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -40,6 +47,7 @@ public class Recipies extends Fragment {
             public void onClick(View v) {
                 jpg1000.setImageResource(R.drawable.image1000);
                 jpg1000.setScaleType(ImageView.ScaleType.FIT_END);
+                buttonPushed = 1000;
             }
         });
     }
@@ -52,6 +60,7 @@ public class Recipies extends Fragment {
             public void onClick(View v) {
                 jpg1200.setImageResource(R.drawable.image1200);
                 jpg1200.setScaleType(ImageView.ScaleType.FIT_END);
+                buttonPushed = 1200;
             }
         });
     }
@@ -64,6 +73,7 @@ public class Recipies extends Fragment {
             public void onClick(View v) {
                 jpg1500.setImageResource(R.drawable.image1500);
                 jpg1500.setScaleType(ImageView.ScaleType.FIT_END);
+                buttonPushed = 1500;
             }
         });
     }
@@ -74,8 +84,9 @@ public class Recipies extends Fragment {
         b1800.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //jpg1800.setImageResource(R.drawable.image1800);
+                jpg1800.setImageResource(R.drawable.image1800);
                 jpg1800.setScaleType(ImageView.ScaleType.FIT_END);
+                buttonPushed = 1800;
             }
         });
     }
@@ -95,6 +106,12 @@ public class Recipies extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        savedInstanceState.putInt("button", buttonPushed);
+        super.onSaveInstanceState(savedInstanceState);
     }
 
     public interface OnFragmentInteractionListener {
