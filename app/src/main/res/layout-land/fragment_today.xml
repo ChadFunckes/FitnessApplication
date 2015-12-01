@@ -107,8 +107,8 @@
         android:layout_height="wrap_content"
         android:text="Add A workout"
         android:id="@+id/addWorkoutButton"
-        android:layout_below="@+id/workList"
-        android:layout_alignParentStart="true" />
+        android:layout_toEndOf="@+id/date"
+        android:layout_alignBottom="@+id/textView11" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -126,7 +126,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Click a workout to see details or remove..."
         android:id="@+id/textView11"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textSchedCalories"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>
