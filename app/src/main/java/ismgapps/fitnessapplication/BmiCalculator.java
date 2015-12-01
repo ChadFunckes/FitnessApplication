@@ -54,21 +54,22 @@ public class BmiCalculator extends AppCompatActivity {
         return (float) (66 + (6.23 * weight) + (12.7 * height) - ( 6.8 * age));
     }
 
-    private String interpretBMI(float bmiResult) {
-
-        if (bmiResult < 16) {
-            return " You are Severely underweight ";
-        } else if (bmiResult < 18.5) {
-
-            return "You are Underweight";
-        } else if (bmiResult < 25) {
-
-            return "You are Normal";
-        } else if (bmiResult < 30) {
-
-            return "You are Overweight";
-        } else {
+    private String interpretBMI(float BmiResult) {
+        if (BmiResult > 30)
+        {
             return "You are Obese";
+        }
+        else if (BmiResult > 25)
+        {
+            return "You are Overweight";
+        }
+        else if (BmiResult > 18.5)
+        {
+            return "You are Normal";
+        }
+        else
+        {
+            return "You are Underweight";
         }
     }
 }

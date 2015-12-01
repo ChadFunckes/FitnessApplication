@@ -2,9 +2,7 @@ package ismgapps.fitnessapplication;
 
 import android.app.Activity;
 import android.app.Fragment;
-import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,12 +16,6 @@ public class Recipies extends Fragment {
     public int buttonPushed = 0;  // keeps track of the button pushed for state change
 
     private OnFragmentInteractionListener mListener;
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        if (savedInstanceState != null) buttonPushed = savedInstanceState.getInt("button");
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
