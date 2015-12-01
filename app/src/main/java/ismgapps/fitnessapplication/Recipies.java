@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +13,9 @@ import android.widget.ImageView;
 
 public class Recipies extends Fragment {
     Button b1000,b1200,b1500,b1800;
-    ImageView jpg1000,jpg1200,jpg1500,jpg1800;
-    int buttonPushed;  // keeps track of the button pushed for state change
+    ImageView jpg;
+
+    public int buttonPushed = 0;  // keeps track of the button pushed for state change
 
     private OnFragmentInteractionListener mListener;
 
@@ -33,60 +35,80 @@ public class Recipies extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle onSavedInstanceState){
         super.onViewCreated(view, onSavedInstanceState);
+        jpg = (ImageView) getView().findViewById(R.id.imageView3);
         cal1000();
         cal1200();
         cal1500();
         cal1800();
+
+        Bundle bundle = getArguments();
+        if (bundle != null)
+            buttonPushed = bundle.getInt("button");
+
+        if (buttonPushed >1 ){
+            if (buttonPushed == 1000){
+                jpg.setImageResource(R.drawable.image1000);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+            }
+            else if (buttonPushed == 1200){
+                jpg.setImageResource(R.drawable.image1200);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+            }
+            else if (buttonPushed == 1500){
+                jpg.setImageResource(R.drawable.image1500);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+            }
+            else  if (buttonPushed == 1800){
+                jpg.setImageResource(R.drawable.image1800);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+            }
+        }
     }
 
     public void cal1000(){
-        jpg1000 = (ImageView) getView().findViewById(R.id.imageView3);
         b1000 = (Button) getView().findViewById(R.id.button1000);
         b1000.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1000.setImageResource(R.drawable.image1000);
-                jpg1000.setScaleType(ImageView.ScaleType.FIT_END);
-                buttonPushed = 1000;
+                jpg.setImageResource(R.drawable.image1000);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+                mListener.onFragmentInteraction(0,1000);
             }
         });
     }
 
     public void cal1200(){
-        jpg1200 = (ImageView) getView().findViewById(R.id.imageView3);
         b1200 = (Button) getView().findViewById(R.id.button1200);
         b1200.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1200.setImageResource(R.drawable.image1200);
-                jpg1200.setScaleType(ImageView.ScaleType.FIT_END);
-                buttonPushed = 1200;
+                jpg.setImageResource(R.drawable.image1200);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+                mListener.onFragmentInteraction(0,1200);
             }
         });
     }
 
     public void cal1500(){
-        jpg1500 = (ImageView) getView().findViewById(R.id.imageView3);
         b1500 = (Button) getView().findViewById(R.id.button1500);
         b1500.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1500.setImageResource(R.drawable.image1500);
-                jpg1500.setScaleType(ImageView.ScaleType.FIT_END);
-                buttonPushed = 1500;
+                jpg.setImageResource(R.drawable.image1500);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+                mListener.onFragmentInteraction(0,1500);
             }
         });
     }
 
     public void cal1800(){
-        jpg1800 = (ImageView) getView().findViewById(R.id.imageView3);
         b1800 = (Button) getView().findViewById(R.id.button1800);
         b1800.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                jpg1800.setImageResource(R.drawable.image1800);
-                jpg1800.setScaleType(ImageView.ScaleType.FIT_END);
-                buttonPushed = 1800;
+                jpg.setImageResource(R.drawable.image1800);
+                jpg.setScaleType(ImageView.ScaleType.FIT_END);
+                mListener.onFragmentInteraction(0, 1800);
             }
         });
     }
@@ -101,22 +123,15 @@ public class Recipies extends Fragment {
         }
     }
 
-
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle savedInstanceState) {
-        savedInstanceState.putInt("button", buttonPushed);
-        super.onSaveInstanceState(savedInstanceState);
-    }
-
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFragmentInteraction(int x, int y);
     }
 
 }

@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         Today.OnFragmentInteractionListener, Recipies.OnFragmentInteractionListener {
 
     private final String TAG = "MainActivity"; // use this tag for log actions
+    private int recipieButton = 0;
     public SharedPreferences sharedPreferences; // get access to the shared preferences
     public static Context mContext; // universal context item.
     // create the logged in user object
@@ -80,7 +81,10 @@ public class MainActivity extends AppCompatActivity
             Log.d(TAG, "user data filled from preferences");
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             if (savedInstanceState != null && savedInstanceState.getString("fragVis") == "recipe"){
-                 ft.replace(R.id.mainFrame, recipieFrag).addToBackStack(null).commit();
+                Bundle bundle = new Bundle();
+                bundle.putInt("button", savedInstanceState.getInt("button"));
+                recipieFrag.setArguments(bundle);
+                ft.replace(R.id.mainFrame, recipieFrag).addToBackStack(null).commit();
             }
             else if (savedInstanceState !=null && savedInstanceState.getString("fragVis") == "fitness"){
                 ft.replace(R.id.mainFrame, fitnessFrag).addToBackStack(null).commit();
@@ -224,8 +228,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         String fragVis;
-        if (recipieFrag.isVisible())
+        if (recipieFrag.isVisible()) {
             fragVis = "recipe";
+            savedInstanceState.putInt("button", recipieButton);
+        }
         else if (fitnessFrag.isVisible())
             fragVis = "fitness";
         else
@@ -233,13 +239,18 @@ public class MainActivity extends AppCompatActivity
         savedInstanceState.putString("fragVis", fragVis);
         super.onSaveInstanceState(savedInstanceState);
     }
+    // today interaction listner
     @Override
     public void onFragmentInteraction(int test) {
-        Log.d(TAG, "frgment interaction success");
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         todayFrag = null;
         todayFrag = new Today();
         ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
         fragmentManager.executePendingTransactions();
+    }
+    // recipe interaction listener
+    @Override
+    public void onFragmentInteraction(int x, int y){
+        recipieButton = y; // y is the button selected in recipe frag
     }
 }

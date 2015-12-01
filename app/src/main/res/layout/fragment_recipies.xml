@@ -3,11 +3,9 @@
     android:layout_height="match_parent" tools:context="ismgapps.fitnessapplication.Recipies"
     android:background="#191010">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView android:layout_width="fill_parent" android:layout_height="fill_parent"
         android:text="Recipies "
-        android:editable="true"
-        android:layout_marginLeft="0dp"
+        android:layout_marginStart="0dp"
         android:layout_alignParentTop="true"
         android:textStyle="bold|italic"
         android:textColor="#7c7a7a" />
