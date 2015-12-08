@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         MainActivity.user.setName(name.getText().toString());
-        MainActivity.user.setPassword(name.getText().toString());
+        MainActivity.user.setPassword(password.getText().toString());
         MainActivity.user.setWeight(Float.valueOf(weight.getText().toString()));
         MainActivity.user.setCur_weight(Float.valueOf(weight.getText().toString()));
         MainActivity.user.setStart_weight(Float.valueOf(weight.getText().toString()));
