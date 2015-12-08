@@ -159,16 +159,30 @@ public class DBhandler extends SQLiteOpenHelper{
         String count = "CAL_COUNT"; String mult = "IS_MULTIPLIER";
         ContentValues values = new ContentValues();
 
+        values.put(name, "Barbell Squat");
+        values.put(desc, "15 to 20 Reps\n5 Sets\n60 Second Rest");
+        values.put(count, .81);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "Bench Press");
-        values.put(desc, "10 to 12 Reps\n4 Sets\n30 Second Rest");
+        values.put(desc, "10 to 12 Reps\n4 Sets\n60 Second Rest");
         values.put(count, 0.72);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
 
-        values.put(name, "The Limb Loosener");
-        values.put(desc, "5 Handstand push-ups\n10 1-legged squats\n15 pull-ups");
-        values.put(count, 1.2);
+        values.put(name, "Bent-Over Barbell Row");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n50 Second Rest");
+        values.put(count, 0.9);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Bent-Over Lateral Raise");
+        values.put(desc, "15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.72);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
@@ -180,9 +194,114 @@ public class DBhandler extends SQLiteOpenHelper{
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
 
-        values.put(name, "The Wimp Special");
-        values.put(desc, "5 Pull-ups\n10 Push-ups\n15 Squats");
-        values.put(count, 3.2);
+        values.put(name, "Dumbbell Lateral Raise");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n30 Second Rest");
+        values.put(count, 0.5);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Dumbbell Shoulder Press");
+        values.put(desc, "10 Reps\n5 Sets\n30 Second Rest");
+        values.put(count, 0.4);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Dumbbell Shrug");
+        values.put(desc, "12 to 15 Reps\n3 Sets\n50 Second Rest");
+        values.put(count, 0.95);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Flat-Bench Dumbbell Fly");
+        values.put(desc, "15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.7);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Hanging Leg Raise");
+        values.put(desc, "15 to 20 Reps\n5 Sets\n30 Second Rest");
+        values.put(count, 0.72);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Incline-Bench Dumbbell Curl");
+        values.put(desc, "10 to 12 Reps\n5 Sets\n30 Second Rest");
+        values.put(count, 0.4);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Incline Dumbbell Press");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n45 Second Rest");
+        values.put(count, 0.65);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Leg Extension");
+        values.put(desc, "15 Reps\n3 Sets\n50 Second Rest");
+        values.put(count, 0.52);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Lying EZ-Bar French Press");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n30 Second Rest");
+        values.put(count, 0.51);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Narrow-Grip Pull-up");
+        values.put(desc, "10 to 15 Reps\n5 Sets\n60 Second Rest");
+        values.put(count, 0.92);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Preacher Curl");
+        values.put(desc, "15 Reps\n3 Sets\n40 Second Rest");
+        values.put(count, 0.57);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Reverse-Grip Lat Pull-Down");
+        values.put(desc, "15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.72);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Romanian Deadlift");
+        values.put(desc, "12 to 15 Reps\n4 Sets\n60 Second Rest");
+        values.put(count, 0.63);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Single Leg Press");
+        values.put(desc, "10 to 12 Reps\n4 Sets\n50 Second Rest");
+        values.put(count, 0.62);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Standing Barbell Curl");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n30 Second Rest");
+        values.put(count, 0.47);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Standing Calf Raise");
+        values.put(desc, "12 to 15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.37);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
@@ -193,6 +312,42 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
+
+        values.put(name, "The Limb Loosener");
+        values.put(desc, "5 Handstand push-ups\n10 1-legged squats\n15 pull-ups");
+        values.put(count, 1.2);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "The Wimp Special");
+        values.put(desc, "5 Pull-ups\n10 Push-ups\n15 Squats");
+        values.put(count, 3.2);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Triceps Dip Machine");
+        values.put(desc, "15 Reps\n3 Sets\n30 Second Rest");
+        values.put(count, 0.64);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "V-Bar Push-Down");
+        values.put(desc, "15 to 20 Reps\n5 Sets\n40 Second Rest");
+        values.put(count, 0.54);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Weighted Decline Crunch");
+        values.put(desc, "15 to 20 Reps\n4 Sets\n30 Second Rest");
+        values.put(count, 0.85);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
     }
     // delete a workout by ID
     public boolean deleteWorkout(int id){

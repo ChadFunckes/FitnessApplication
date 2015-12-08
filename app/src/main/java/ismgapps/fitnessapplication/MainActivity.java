@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity
         recipieFrag = new Recipies();
         // get database setup...
         dBhandler = new DBhandler(this);
-        //dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
+        dBhandler.destroyDB(); //@TODO this line clears the DB...DELETE AFTER TESTING
         // Instantiate the User
         if (user == null) user = new User(sharedPreferences); // build user based on stored preferences
         // check if the user is logged in...if name is null then no user is loggedIn, launch login activity
