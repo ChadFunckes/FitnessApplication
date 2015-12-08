@@ -74,6 +74,9 @@ public class MainActivity extends AppCompatActivity
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
             startActivity(intent);
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
+            fragmentManager.executePendingTransactions();
             Log.d(TAG, "no user data exists in shared prefs");
         }
         else{ // fill user from saved preferences ...

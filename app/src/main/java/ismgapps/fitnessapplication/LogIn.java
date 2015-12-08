@@ -37,7 +37,7 @@ public class LogIn extends AppCompatActivity {
         loginAnswer = MainActivity.dBhandler.checkUserLogin(name.getText().toString(), password.getText().toString());
         switch (loginAnswer){
             case (0):
-                Log.d(TAG, "User and passord correct");
+                Log.d(TAG, "User and password correct");
                 finish();
                 break;
             case (1):

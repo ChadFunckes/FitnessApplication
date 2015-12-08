@@ -5,6 +5,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -15,10 +16,22 @@ public class BmiCalculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bmi_calculator);
+        if (savedInstanceState != null){
+            TextView r = (TextView)findViewById(R.id.Result);
+            r.setText(savedInstanceState.getString("result"));
+        }
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // set back button operation
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        TextView r = (TextView)findViewById(R.id.Result);
+        String result = r.getText().toString();
+        outState.putString("result", result);
+        super.onSaveInstanceState(outState);
     }
 
     public void BmiCalculate (View view){
