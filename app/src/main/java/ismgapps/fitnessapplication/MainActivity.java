@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity
         // check if the user is logged in...if name is null then no user is loggedIn, launch login activity
         if (sharedPreferences.getString("name", null) == null){
             Intent intent = new Intent(this, LogIn.class);
-            startActivity(intent);
+            startActivityForResult(intent, 0);
             FragmentTransaction ft = getFragmentManager().beginTransaction();
             ft.replace(R.id.mainFrame, todayFrag).addToBackStack(null).commit();
             fragmentManager.executePendingTransactions();
