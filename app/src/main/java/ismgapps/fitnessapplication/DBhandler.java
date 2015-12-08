@@ -159,6 +159,13 @@ public class DBhandler extends SQLiteOpenHelper{
         String count = "CAL_COUNT"; String mult = "IS_MULTIPLIER";
         ContentValues values = new ContentValues();
 
+        values.put(name, "Barbell Shoulder Press");
+        values.put(desc, "8 to 10 Reps\n5 Sets\n35 Second Rest");
+        values.put(count, 0.41);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "Barbell Squat");
         values.put(desc, "15 to 20 Reps\n5 Sets\n60 Second Rest");
         values.put(count, .81);
@@ -194,6 +201,20 @@ public class DBhandler extends SQLiteOpenHelper{
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
 
+        values.put(name, "Deadlift");
+        values.put(desc, "10 Reps\n5 Sets\n60 Second Rest");
+        values.put(count, 0.94);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Decline Press");
+        values.put(desc, "12 to 15 Reps\n3 Sets\n40 Second Rest");
+        values.put(count, 0.57);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "Dumbbell Lateral Raise");
         values.put(desc, "8 to 10 Reps\n4 Sets\n30 Second Rest");
         values.put(count, 0.5);
@@ -215,9 +236,30 @@ public class DBhandler extends SQLiteOpenHelper{
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
 
+        values.put(name, "Dumbbell Walking Lunge");
+        values.put(desc, "10 to 12 Reps\n4 Sets\n50 Second Rest");
+        values.put(count, 0.72);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "Flat-Bench Dumbbell Fly");
         values.put(desc, "15 Reps\n3 Sets\n45 Second Rest");
         values.put(count, 0.7);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Flat-Bench Dumbbell Press");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n50 Second Rest");
+        values.put(count, 0.64);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Front Lat Pull-Down");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n45 Second Rest");
+        values.put(count, 0.67);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
@@ -257,9 +299,23 @@ public class DBhandler extends SQLiteOpenHelper{
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
 
+        values.put(name, "Lying Leg Curl");
+        values.put(desc, "12 to 15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.49);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "Narrow-Grip Pull-up");
         values.put(desc, "10 to 15 Reps\n5 Sets\n60 Second Rest");
         values.put(count, 0.92);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Plate Front Raise");
+        values.put(desc, "15 Reps\n3 Sets\n45 Second Rest");
+        values.put(count, 0.47);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
@@ -281,6 +337,34 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put(name, "Romanian Deadlift");
         values.put(desc, "12 to 15 Reps\n4 Sets\n60 Second Rest");
         values.put(count, 0.63);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Seated Calf Raise");
+        values.put(desc, "12 to 15 Reps\n4 Sets\n45 Second Rest");
+        values.put(count, 0.72);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Seated Overhead Dumbbell Extension");
+        values.put(desc, "8 to 10 Reps\n4 Sets\n40 Second Rest");
+        values.put(count, 0.45);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Single-Arm Preacher Curl");
+        values.put(desc, "10 to 12 Reps\n5 Sets\n30 Second Rest");
+        values.put(count, 0.42);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "Single-Arm Skull-Crusher");
+        values.put(desc, "8 to 10 Reps\n5 Sets\n30 Second Rest");
+        values.put(count, 0.47);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
@@ -309,6 +393,13 @@ public class DBhandler extends SQLiteOpenHelper{
         values.put(name, "Strength and Length");
         values.put(desc, "500 meter run\n21 x 1.5 pood kettlebell swing\n21 x pull-ups");
         values.put(count, 2.4);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
+        values.put(name, "T-Bar Row");
+        values.put(desc, "12 to 15 Reps\n3 Sets\n50 Second Rest");
+        values.put(count, 0.66);
         values.put(mult, 1);
         db.insert(TABLE_WORKOUTS, null, values);
         values.clear();
