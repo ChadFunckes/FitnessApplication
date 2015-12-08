@@ -159,6 +159,13 @@ public class DBhandler extends SQLiteOpenHelper{
         String count = "CAL_COUNT"; String mult = "IS_MULTIPLIER";
         ContentValues values = new ContentValues();
 
+        values.put(name, "Bench Press");
+        values.put(desc, "10 to 12 Reps\n4 Sets\n30 Second Rest");
+        values.put(count, 0.72);
+        values.put(mult, 1);
+        db.insert(TABLE_WORKOUTS, null, values);
+        values.clear();
+
         values.put(name, "The Limb Loosener");
         values.put(desc, "5 Handstand push-ups\n10 1-legged squats\n15 pull-ups");
         values.put(count, 1.2);
