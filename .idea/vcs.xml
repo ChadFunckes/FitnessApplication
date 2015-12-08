@@ -4,6 +4,6 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/.gradle" vcs="" />
-    <mapping directory="$PROJECT_DIR$/.gradle" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/.gradle" vcs="" />
   </component>
 </project>
