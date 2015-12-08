@@ -12,7 +12,7 @@ import android.widget.TextView;
 public class MyFitness extends Fragment {
 
     private OnFragmentInteractionListener mListener;
-    private TextView name, weight, BMI, BMR, calories;
+    private TextView name, weight, stWeight, BMI, BMR, calories, lbsLost;
 
     public MyFitness() {
         // Required empty public constructor
@@ -34,16 +34,20 @@ public class MyFitness extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         // get references to the textViews
         name = (TextView) getView().findViewById(R.id.nameText);
+        stWeight = (TextView) getView().findViewById(R.id.startWeight);
         weight = (TextView) getView().findViewById(R.id.currWeight);
         BMI = (TextView) getView().findViewById(R.id.BMI);
         BMR = (TextView) getView().findViewById(R.id.BMR);
         calories = (TextView) getView().findViewById(R.id.calories);
+        lbsLost = (TextView) getView().findViewById(R.id.lostWeight);
         // set the text view texts
         name.setText(MainActivity.user.getName());
+        stWeight.setText(String.valueOf(MainActivity.user.getStart_weight()));
         weight.setText(String.valueOf(MainActivity.user.getCur_weight()));
         BMI.setText(String.valueOf(MainActivity.user.getBMI()));
         BMR.setText(String.valueOf(MainActivity.user.getBMR()));
         calories.setText(String.valueOf(MainActivity.user.getCal_needs()));
+        lbsLost.setText(String.valueOf(MainActivity.user.getStart_weight() - MainActivity.user.getCur_weight()));
     }
 
     // TODO: Rename method, update argument and hook method into UI event
