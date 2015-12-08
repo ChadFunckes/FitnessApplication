@@ -25,7 +25,6 @@
         android:layout_below="@+id/textView2"
         android:layout_alignParentStart="true"
         android:hint="Enter the user name"
-        android:layout_toStartOf="@+id/button3"
         android:singleLine="true"
         android:inputType="textPersonName" />
 
@@ -43,10 +42,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPassword"
-        android:ems="10"
         android:id="@+id/password"
         android:layout_below="@+id/textView3"
-        android:layout_alignParentStart="true"
         android:hint="Enter your password"
         android:singleLine="true" />
 
@@ -56,7 +53,6 @@
         android:text="Login"
         android:id="@+id/button"
         android:layout_alignTop="@+id/button3"
-        android:layout_alignEnd="@+id/textView2"
         android:onClick="Login"/>
 
     <Button
@@ -66,17 +62,16 @@
         android:onClick="Register"
         android:id="@+id/button3"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/password"
+        android:layout_toRightOf="@+id/button"
         android:layout_marginBottom="40dp" />
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/nameGoodImage"
         android:src="@drawable/goodblock"
         android:layout_below="@+id/textView2"
-        android:layout_above="@+id/textView3"
-        android:layout_alignEnd="@+id/button3"
+        android:layout_toEndOf="@id/name"
         android:visibility="invisible" />
 
     <ImageView
@@ -91,13 +86,11 @@
 
     <ImageView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:id="@+id/nameBadImage"
         android:src="@drawable/badblock"
-        android:layout_above="@+id/textView3"
-        android:layout_alignStart="@+id/nameGoodImage"
-        android:layout_alignTop="@+id/name"
-        android:layout_alignEnd="@+id/nameGoodImage"
+        android:layout_below="@+id/textView2"
+        android:layout_toEndOf="@id/name"
         android:visibility="invisible" />
 
 </RelativeLayout>
