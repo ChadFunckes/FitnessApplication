@@ -21,7 +21,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add Workout"
+                android:text="Add\nWorkout"
+                android:gravity="center"
                 android:id="@+id/buttonText1"
                 android:layout_centerVertical="true"
                 android:layout_alignParentStart="true"
@@ -31,17 +32,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Delete Workout"
+                android:text="Delete\nWorkout"
+                android:gravity="center"
                 android:id="@+id/buttonText2"
-                android:layout_alignTop="@+id/buttonText1"
-                android:layout_centerHorizontal="true"
                 android:onClick="removeWorkout"
-                android:clickable="true"/>
+                android:layout_marginLeft="20dp"
+                android:clickable="true"
+                android:layout_alignTop="@+id/buttonText1"
+                android:layout_centerHorizontal="true" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Schedule Workout"
+                android:text="Schedule\nWorkout"
+                android:gravity="center"
                 android:id="@+id/buttonText3"
                 android:layout_alignTop="@+id/buttonText2"
                 android:layout_alignParentEnd="true"
