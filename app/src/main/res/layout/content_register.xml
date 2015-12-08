@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
@@ -10,218 +11,235 @@
     tools:showIn="@layout/activity_register" tools:context="ismgapps.fitnessapplication.Register"
     android:background="#191010">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Name:"
-        android:id="@+id/Username"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:textStyle="bold|italic"
-        android:textColor="#525050" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="AGE:"
-        android:id="@+id/age"
-        android:layout_toRightOf="@+id/editTextUsername"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_marginLeft="15dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Name:"
+                android:id="@+id/Username"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:textStyle="bold|italic"
+                android:textColor="#525050" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editTextUsername"
-        android:textColor="#525050"
-        android:layout_below="@+id/Username"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="AGE:"
+                android:id="@+id/age"
+                android:layout_toRightOf="@+id/editTextUsername"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_marginLeft="15dp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Password"
-        android:id="@+id/password"
-        android:layout_below="@+id/editTextUsername"
-        android:textStyle="bold|italic"
-        android:textColor="#525050" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editTextUsername"
+                android:textColor="#525050"
+                android:layout_below="@+id/Username"
+                android:layout_alignParentStart="true"
+                android:background="#aba8a8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editTextPassword"
-        android:textColor="#525050"
-        android:layout_below="@+id/password"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Password"
+                android:id="@+id/password"
+                android:layout_below="@+id/editTextUsername"
+                android:textStyle="bold|italic"
+                android:textColor="#525050" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Email:"
-        android:id="@+id/email"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextPassword"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:id="@+id/editTextPassword"
+                android:textColor="#525050"
+                android:layout_below="@+id/password"
+                android:layout_alignParentStart="true"
+                android:background="#aba8a8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="10"
-        android:id="@+id/editTextemail"
-        android:layout_below="@+id/email"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Email:"
+                android:id="@+id/email"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextPassword"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Phone Number"
-        android:id="@+id/PhoneNumber"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextemail"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/editTextemail"
+                android:layout_below="@+id/email"
+                android:layout_alignParentStart="true"
+                android:background="#aba8a8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="phone"
-        android:ems="10"
-        android:id="@+id/editTextPhone"
-        android:layout_below="@+id/PhoneNumber"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Phone Number"
+                android:id="@+id/PhoneNumber"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextemail"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Weight:"
-        android:id="@+id/Weight"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextPhone"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/editTextPhone"
+                android:layout_below="@+id/PhoneNumber"
+                android:layout_alignParentStart="true"
+                android:background="#aba8a8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editTextWight"
-        android:layout_below="@+id/Weight"
-        android:layout_alignParentStart="true"
-        android:background="#aba8a8" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Weight:"
+                android:id="@+id/Weight"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextPhone"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Height"
-        android:id="@+id/Height"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextWight"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editTextWight"
+                android:layout_below="@+id/Weight"
+                android:layout_alignParentStart="true"
+                android:background="#aba8a8" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editTextHeight"
-        android:background="#aba8a8"
-        android:layout_below="@+id/Height"
-        android:layout_alignParentStart="true"
-        android:focusableInTouchMode="true" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Height"
+                android:id="@+id/Height"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextWight"
+                android:layout_alignParentStart="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="BMI:"
-        android:id="@+id/BMI"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextHeight"
-        android:layout_alignParentStart="true" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:id="@+id/editTextHeight"
+                android:background="#aba8a8"
+                android:layout_below="@+id/Height"
+                android:layout_alignParentStart="true"
+                android:focusableInTouchMode="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:ems="10"
-        android:id="@+id/textBMI"
-        android:layout_below="@+id/BMI"
-        android:layout_alignParentStart="true"
-        android:text="0.0"
-        android:textColor="#aba8a8"
-        android:layout_alignEnd="@+id/Height"
-        android:maxLength="5" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="BMI:"
+                android:id="@+id/BMI"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextHeight"
+                android:layout_alignParentStart="true" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        android:id="@+id/Register"
-        android:layout_below="@+id/textBMI"
-        android:layout_centerHorizontal="true"
-        android:onClick="register"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:ems="10"
+                android:id="@+id/textBMI"
+                android:layout_below="@+id/BMI"
+                android:layout_alignParentStart="true"
+                android:text="0.0"
+                android:textColor="#aba8a8"
+                android:layout_alignEnd="@+id/Height"
+                android:maxLength="5" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/textAge"
-        android:textColor="#525050"
-        android:background="#aba8a8"
-        android:layout_below="@+id/age"
-        android:layout_alignStart="@+id/age"
-        android:inputType="number" />
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:id="@+id/Register"
+                android:layout_below="@+id/textBMI"
+                android:layout_centerHorizontal="true"
+                android:onClick="register"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="BMR:"
-        android:id="@+id/BMR"
-        android:textStyle="bold|italic"
-        android:textColor="#525050"
-        android:layout_below="@+id/editTextHeight"
-        android:layout_toEndOf="@+id/Weight" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:id="@+id/textAge"
+                android:textColor="#525050"
+                android:background="#aba8a8"
+                android:layout_below="@+id/age"
+                android:layout_alignStart="@+id/age"
+                android:inputType="number" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:ems="10"
-        android:id="@+id/textBMR"
-        android:text="0.0"
-        android:textColor="#aba8a8"
-        android:layout_below="@+id/BMR"
-        android:layout_toEndOf="@+id/Weight" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="BMR:"
+                android:id="@+id/BMR"
+                android:textStyle="bold|italic"
+                android:textColor="#525050"
+                android:layout_below="@+id/editTextHeight"
+                android:layout_toEndOf="@+id/Weight" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calculate "
-        android:id="@+id/CalcButton"
-        android:layout_below="@+id/textBMI"
-        android:layout_alignParentStart="true"
-        android:onClick="calculate"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:ems="10"
+                android:id="@+id/textBMR"
+                android:text="0.0"
+                android:textColor="#aba8a8"
+                android:layout_below="@+id/BMR"
+                android:layout_toEndOf="@+id/Weight" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Calculate "
+                android:id="@+id/CalcButton"
+                android:layout_below="@+id/textBMI"
+                android:layout_alignParentStart="true"
+                android:onClick="calculate"/>
+
+
+
+
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
 
 </RelativeLayout>
