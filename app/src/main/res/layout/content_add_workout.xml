@@ -12,112 +12,122 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="ismgapps.fitnessapplication.AddWorkoutActivity"
     tools:showIn="@layout/activity_add_workout">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Workout Name"
-        android:id="@+id/workoutNameText"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/workoutNameEditText"
-        android:layout_below="@+id/workoutNameText"
-        android:layout_alignParentStart="true"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:layout_alignParentEnd="true"
-        android:maxLines="1"
-        android:maxLength="25"
-        android:singleLine="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Workout Description"
-        android:id="@+id/workoutDescriptionText"
-        android:layout_below="@+id/workoutNameEditText"
-        android:layout_alignParentStart="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:id="@+id/workOutEditText"
-        android:layout_below="@+id/workoutDescriptionText"
-        android:layout_alignParentStart="true"
-        android:layout_alignEnd="@+id/workoutNameEditText"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:maxLines="10"
-        android:maxLength="255"
-        android:hint="100 push-ups\n50 sit-ups\netc..." />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Calorie Calculation Method"
-        android:id="@+id/calorieCalcText"
-        android:layout_below="@+id/workOutEditText"
-        android:layout_alignParentStart="true" />
-
-    <RadioGroup
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/calorieCalcText"
-        android:layout_alignParentStart="true"
-        android:orientation="vertical"
-        android:id="@+id/CalorieRadioGroup">
+        android:layout_height="match_parent">
 
-        <RadioButton
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Total Calorie Count"
-            android:id="@+id/totalCalorieSelected"
-            android:checked="true" />
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Workout Name"
+            android:id="@+id/workoutNameText"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" />
 
-        <RadioButton
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Per Pound Calorie Count"
-            android:id="@+id/perPoundSelected"
-            android:checked="false" />
-    </RadioGroup>
+            android:id="@+id/workoutNameEditText"
+            android:layout_below="@+id/workoutNameText"
+            android:layout_alignParentStart="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_alignParentEnd="true"
+            android:maxLines="1"
+            android:maxLength="25"
+            android:singleLine="true" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter Amount"
-        android:id="@+id/calorieEnterText"
-        android:layout_below="@+id/CalorieRadioGroup"
-        android:layout_alignParentStart="true" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Workout Description"
+            android:id="@+id/workoutDescriptionText"
+            android:layout_below="@+id/workoutNameEditText"
+            android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/calAmountEditText"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:singleLine="true"
-        android:layout_below="@+id/calorieEnterText"
-        android:layout_alignEnd="@+id/calorieEnterText"
-        android:maxLength="5"
-        android:hint="0.0" />
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            android:id="@+id/workOutEditText"
+            android:layout_below="@+id/workoutDescriptionText"
+            android:layout_alignParentStart="true"
+            android:layout_alignEnd="@+id/workoutNameEditText"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:maxLines="10"
+            android:maxLength="255"
+            android:hint="100 push-ups\n50 sit-ups\netc..." />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Workout"
-        android:id="@+id/addWorkoutButton"
-        android:layout_marginTop="45dp"
-        android:layout_below="@+id/calAmountEditText"
-        android:layout_alignParentStart="true"
-        android:onClick="addWorkoutClicked" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Calorie Calculation Method"
+            android:id="@+id/calorieCalcText"
+            android:layout_below="@+id/workOutEditText"
+            android:layout_alignParentStart="true" />
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/calorieCalcText"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical"
+            android:id="@+id/CalorieRadioGroup">
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Total Calorie Count"
+                android:id="@+id/totalCalorieSelected"
+                android:checked="true" />
+
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Per Pound Calorie Count"
+                android:id="@+id/perPoundSelected"
+                android:checked="false" />
+        </RadioGroup>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="Enter Amount"
+            android:id="@+id/calorieEnterText"
+            android:layout_below="@+id/CalorieRadioGroup"
+            android:layout_alignParentStart="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/calAmountEditText"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            android:layout_below="@+id/calorieEnterText"
+            android:layout_alignEnd="@+id/calorieEnterText"
+            android:maxLength="5"
+            android:hint="0.0" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Workout"
+            android:id="@+id/addWorkoutButton"
+            android:layout_marginTop="45dp"
+            android:layout_below="@+id/calAmountEditText"
+            android:layout_alignParentStart="true"
+            android:onClick="addWorkoutClicked" />
+
+    </RelativeLayout>
+
+</ScrollView>
 
 
 </RelativeLayout>
